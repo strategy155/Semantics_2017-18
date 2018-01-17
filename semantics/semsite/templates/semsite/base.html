@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>{% block title %}Учебник по семантике{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'semsite/css/materialize.css' %}">
+    {% block css %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="{% static 'semsite/js/forms.js' %}"></script>
+    {% block js %}{% endblock %}
+</head>
+
+<body>
+    {% include 'semsite/blocks/navbar.html' %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

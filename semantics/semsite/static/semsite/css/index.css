@@ -1,0 +1,31 @@
+.main-row {
+	width: 100vw;
+	margin-bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.side-menu-col {
+	background-color: #29283f;
+	color: white;
+	min-height: 100vh !important;
+	padding-left: 4% !important;
+	padding-top: 3% !important;
+}
+
+.page-content-col {
+	background-color: white;
+	min-height: 100vh;
+	color: #29283f;
+	padding-left: 4% !important;
+	padding-right: 4% !important;
+	padding-top: 3% !important;
+}
+
+.page-header {
+	font-size: 1.7rem;
+}
+
+.page-header:first-child {
+    margin-top: 0px !important;
+ }
