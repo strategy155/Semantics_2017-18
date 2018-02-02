@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -15,7 +13,7 @@ class IdeaDescriptor:
 
 class Term(models.Model):
     name = models.CharField(max_length=200)
-    #translations = models.ManyToManyField(Translation)
+    # translations = models.ManyToManyField(Translation)
     translations = models.TextField()
     description = models.TextField()
 
@@ -40,3 +38,12 @@ class Person(models.Model):
     photo = models.ImageField(upload_to='uploads/')
     publications = models.ManyToManyField(Publication)
     ideas = IdeaDescriptor()
+
+
+class Article(models.Model):
+    title = models.Model.CharField(max_length=200)
+    main_image = models.ImageField(upload_to="/uploads/")
+    text = models.TextField()
+    literature = models.ManyToManyField(Publication)
+    ideas = models.ManyToManyField(Idea)
+    terms = models.ManyToManyField(Term)
