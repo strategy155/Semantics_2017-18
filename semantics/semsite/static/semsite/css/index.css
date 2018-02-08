@@ -10,7 +10,7 @@
 	color: white;
 	min-height: 100vh !important;
 	padding-left: 4% !important;
-	padding-top: 3% !important;
+	padding-top: 2% !important;
 }
 
 .page-content-col {
@@ -29,3 +29,7 @@
 .page-header:first-child {
     margin-top: 0px !important;
  }
+
+ .bold {
+	line-height: 44px !important;
+}

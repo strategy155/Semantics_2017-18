@@ -11,6 +11,10 @@ html, body {
 	width: 17%;
 }
 
+.main-menu-items {
+    font-size: 1.1rem !important;	
+}
+
 .logo-img {
 	width: 90%;
 	margin-top: 15%;
@@ -29,4 +33,13 @@ html, body {
 
 .hide-on-med-and-down {
 	margin-left: 17%;
+}
+
+.bold {
+    line-height: 35px;
+}
+
+.side-menu-item {
+    font-size: 1.1rem; 
+    color: white !important;	
 }
