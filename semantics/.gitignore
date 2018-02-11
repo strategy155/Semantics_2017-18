@@ -1,3 +1,4 @@
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
 # Byte-compiled / optimized / DLL files
@@ -157,3 +158,5 @@ crashlytics-build.properties
 fabric.properties
 
 .idea/
+/semsite/migrations/
+/semantics/
