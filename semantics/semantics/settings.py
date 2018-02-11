@@ -25,7 +25,7 @@ SECRET_KEY = '=w7yqpjxy7k369gocj@*wa#9z%yvjbcog9_$-r6%zgkvtbt9j+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['138.68.135.173', 'taniquetil.cf', 'aman.taniquetil.cf','www.russemantics.cf', 'russemantics.cf']
 
 
 # Application definition
@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'semantics.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'semsite_db',
-        'USER': 'gwm',
+        'USER': 'gwm_user',
         'PASSWORD': 'gwm',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -123,5 +123,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = '/home/semsite_server/semsite/static/'
 STATIC_URL = '/static/'
-STATIC_ROOT = '/semsite/static/'
