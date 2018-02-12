@@ -6,3 +6,5 @@ class IndexView(TemplateView):
     template_name = 'semsite/index.html'
 
 
+class HandbookArticleView(TemplateView):
+    pass
