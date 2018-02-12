@@ -57,6 +57,7 @@ class Person(models.Model):
 
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
+    urlname = models.CharField(max_length=200, blank=True)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
     text = models.TextField()
     literature = models.ManyToManyField(Publication, blank=True)
