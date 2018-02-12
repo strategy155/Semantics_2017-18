@@ -46,9 +46,9 @@ class Publication(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    bio = models.TextField()
+    bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to='uploads/', blank=True)
-    publications = models.ManyToManyField(Publication)
+    publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now(),blank=False)
 
