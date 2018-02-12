@@ -37,9 +37,12 @@ html, body {
 
 .bold {
     line-height: 35px;
+    cursor: pointer !important;
 }
 
 .side-menu-item {
-    font-size: 1.1rem; 
-    color: white !important;	
+    font-size: 1rem; 
+    line-height: 0.5rem;
+    color: white !important;
+    cursor: pointer;	
 }
