@@ -162,6 +162,3 @@ media/
 /semsite/templates/semsite/handbook.html
 /semsite/templates/semsite/handbook_article.html
 /semsite/migrations/
-!/semsite/migrations/__init__.py
-!/semsite/templates/semsite/handbook.html
-!/semsite/templates/semsite/handbook_article.html
