@@ -1,0 +1,39 @@
+{% extends 'semsite/base.html'%}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row main-row">
+	<div class="col s2 side-menu-col">
+		<ul class="side-nav-fixed">
+			<li class="bold"><a class="side-menu-item" href="#sec1">О проекте</a></li>
+			<li class="bold"><a class="side-menu-item" href="#sec2">Кто мы такие</a></li>
+			<li class="bold"><a class="side-menu-item" href="#sec3">Зачем все это</a></li>
+		</ul>
+	</div>
+
+{% if handbook_articles %}
+	<div class="col s10 page-content-col">
+		<div>
+            <ul>
+    {% for article in handbook_articles %}
+        <li class="collection"><a class="collection-item" href="/handbook/{{ article.title }}/">{{ article.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles.</p>
+{% endif %}
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

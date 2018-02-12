@@ -17,33 +17,52 @@ class Term(models.Model):
     translations = models.TextField()
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
+
 
 class Dictionary(models.Model):
-    terms = models.ManyToManyField(Term)
+    terms = models.ManyToManyField(Term, blank=True)
 
 
 class Idea(models.Model):
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
+
+
 
 class Publication(models.Model):
     name = models.CharField(max_length=30)
-    ideas = models.ManyToManyField(Idea)
+    ideas = models.ManyToManyField(Idea, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     bio = models.TextField()
-    photo = models.ImageField(upload_to='uploads/')
+    photo = models.ImageField(upload_to='uploads/', blank=True)
     publications = models.ManyToManyField(Publication)
     ideas = IdeaDescriptor()
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
-class Article(models.Model):
+
+
+class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
-    main_image = models.ImageField(upload_to="uploads/")
+    urlname = models.CharField(max_length=200, blank=True)
+    main_image = models.ImageField(upload_to="uploads/", blank=True)
     text = models.TextField()
-    literature = models.ManyToManyField(Publication)
-    ideas = models.ManyToManyField(Idea)
-    terms = models.ManyToManyField(Term)
+    literature = models.ManyToManyField(Publication, blank=True)
+    ideas = models.ManyToManyField(Idea, blank=True)
+    terms = models.ManyToManyField(Term, blank=True)
+
+    def __str__(self):
+        return self.title
