@@ -15,6 +15,8 @@ class HandbookView(RedirectView):
         handbooks = HandbookArticle.objects.all()
         if handbooks:
             self.url = (reverse('handbook_article', kwargs={'title' : handbooks[0].title}))
+        else:
+            raise Http404()
         return super().get_redirect_url(*args, **kwargs)
 
 
