@@ -15,8 +15,8 @@ class IdeaDescriptor:
 class Term(models.Model):
     name = models.CharField(max_length=200)
     # translations = models.ManyToManyField(Translation)
-    translations = models.TextField()
-    description = models.TextField()
+    translations = models.TextField(blank=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
