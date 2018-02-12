@@ -159,6 +159,4 @@ fabric.properties
 
 .idea/
 media/
-/semsite/templates/semsite/handbook.html
-/semsite/templates/semsite/handbook_article.html
 /semsite/migrations/
