@@ -34,7 +34,7 @@
 {% if handbook_articles %}
 	<div class="col s10 page-content-col">
         <p class="page-header" id="article-title">{{ handbook_articles.0.title }}</p>
-        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;"> 
+        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
         <div id="article-text">{{ handbook_articles.0.text|safe }}</div>
 {% else %}
     <p style="margin: 0px;">No articles.</p>

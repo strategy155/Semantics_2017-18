@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     path('authors/', AuthorView.as_view(), name='authors'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
-    path('handbook/<str:title>/', HandbookArticleView.as_view(), name='handbook_article')
+    path('handbook/<str:urlname>/', HandbookArticleView.as_view(), name='handbook_article')
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

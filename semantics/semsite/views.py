@@ -18,20 +18,24 @@ class HandbookView(RedirectView):
     pass
 
 
-    def get_redirect_url(self, *args, **kwargs):
+    def get_redirect_url(self):
         handbooks = HandbookArticle.objects.all()
         if handbooks:
-            self.url = (reverse('handbook_article', kwargs={'title' : handbooks[0].title}))
+            self.url = (reverse('handbook_article', kwargs={'urlname': handbooks[0].urlname}))
         else:
             raise Http404('There is no articles in db now')
-        return super().get_redirect_url(*args, **kwargs)
+        print(self.url)
+        return super().get_redirect_url()
+
 
 
 class HandbookArticleView(TemplateView):
-    template_name = 'semsite/handbook_article.html'
+    template_name = 'semsite/handbook.html'
 
     def get_context_data(self, **kwargs):
+        handbook_articles = HandbookArticle.objects.all()
         context = super().get_context_data(**kwargs)
-        context['handbook_article'] = get_object_or_404(HandbookArticle, title=kwargs['title'])
+        context['handbook_articles'] = handbook_articles
+        context['handbook_article'] = get_object_or_404(HandbookArticle, urlname=kwargs['urlname'])
         return context
 
