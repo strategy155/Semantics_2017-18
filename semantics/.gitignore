@@ -158,8 +158,3 @@ crashlytics-build.properties
 fabric.properties
 
 .idea/
-/semsite/migrations/
-/semantics/__init__.py
-/semantics/settings.py
-/semantics/wsgi.py
-/db.sqlite3
