@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+import django.utils.timezone
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -49,7 +50,7 @@ class Person(models.Model):
     photo = models.ImageField(upload_to='uploads/', blank=True)
     publications = models.ManyToManyField(Publication)
     ideas = IdeaDescriptor()
-    birthdate = models.DateField(default=datetime.datetime.now(),blank=False)
+    birthdate = models.DateField(default=django.utils.timezone.now(),blank=False)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
