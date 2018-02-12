@@ -1,5 +1,6 @@
 from django.db import models
-
+import datetime
+import django.utils.timezone
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -14,8 +15,8 @@ class IdeaDescriptor:
 class Term(models.Model):
     name = models.CharField(max_length=200)
     # translations = models.ManyToManyField(Translation)
-    translations = models.TextField()
-    description = models.TextField()
+    translations = models.TextField(blank=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -45,10 +46,11 @@ class Publication(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    bio = models.TextField()
+    bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to='uploads/', blank=True)
-    publications = models.ManyToManyField(Publication)
+    publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
+    birthdate = models.DateField(default=django.utils.timezone.now(),blank=False)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

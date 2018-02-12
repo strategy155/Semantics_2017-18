@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import url
 from django.contrib import admin
-from semsite.views import IndexView, HandbookView, HandbookArticleView
+from semsite.views import IndexView, HandbookView, HandbookArticleView, AuthorView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,7 +26,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view(), name='index'),
+    path('authors/', AuthorView.as_view(), name='authors'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
     path('handbook/<str:title>/', HandbookArticleView.as_view(), name='handbook_article')
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
