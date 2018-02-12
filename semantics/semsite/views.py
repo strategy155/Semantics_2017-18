@@ -8,6 +8,7 @@ class IndexView(TemplateView):
 
 class AuthorView(ListView):
     template_name = 'semsite/authors.html'
+    context_object_name = 'authors'
 
     def get_queryset(self):
         return Person.objects.order_by('birthdate').all()
