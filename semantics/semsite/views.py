@@ -10,7 +10,7 @@ class AuthorView(ListView):
     template_name = 'semsite/authors.html'
 
     def get_queryset(self):
-        return Person.objects.order_by('birthdate')
+        return Person.objects.order_by('birthdate').all()
 
 
 class HandbookView(RedirectView):
