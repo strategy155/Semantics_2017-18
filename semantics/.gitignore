@@ -160,3 +160,4 @@ fabric.properties
 .idea/
 /semsite/migrations/
 /semantics/
+!/semantics/urls.py
