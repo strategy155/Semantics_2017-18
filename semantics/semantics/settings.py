@@ -125,5 +125,5 @@ USE_TZ = True
 
 STATIC_ROOT = '/home/semsite_server/semsite/static/'
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+MEDIA_ROOT = '/home/semsite_server/semsite/media/'
 MEDIA_URL = '/media/'
