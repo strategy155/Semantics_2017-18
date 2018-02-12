@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, ListView
+from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, reverse
+from django.views.generic import TemplateView, ListView, RedirectView
 from .models import HandbookArticle
 
 
@@ -7,12 +7,15 @@ class IndexView(TemplateView):
     template_name = 'semsite/index.html'
 
 
-class HandbookView(ListView):
-    template_name = 'semsite/handbook.html'
-    context_object_name = 'handbook_articles'
+class HandbookView(RedirectView):
+    pass
 
-    def get_queryset(self):
-        return HandbookArticle.objects.all()
+
+    def get_redirect_url(self, *args, **kwargs):
+        handbooks = HandbookArticle.objects.all()
+        if handbooks:
+            self.url = (reverse('handbook_article', kwargs={'title' : handbooks[0].title}))
+        return super().get_redirect_url(*args, **kwargs)
 
 
 class HandbookArticleView(TemplateView):
