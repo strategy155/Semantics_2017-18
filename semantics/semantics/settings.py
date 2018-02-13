@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=w7yqpjxy7k369gocj@*wa#9z%yvjbcog9_$-r6%zgkvtbt9j+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','138.68.135.173', 'taniquetil.cf', 'aman.taniquetil.cf','www.russemantics.cf', 'russemantics.cf']
+
 
 
 # Application definition
@@ -76,10 +77,15 @@ WSGI_APPLICATION = 'semantics.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'semsite_db',
+        'USER': 'gwm_user',
+        'PASSWORD': 'gwm',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -118,6 +124,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = '/home/semsite_server/semsite/static/'
 STATIC_URL = '/static/'
-MEDIA_URL ='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = '/home/semsite_server/semsite/media/'
+MEDIA_URL = '/media/'
+
