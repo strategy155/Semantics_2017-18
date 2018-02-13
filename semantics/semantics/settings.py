@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'semsite_db',
         'USER': 'gwm_user',
-        'PASSWORD': 'gwm',
+        'PASSWORD': os.environ['SEMSITE_DB_PASSWORD'],
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
