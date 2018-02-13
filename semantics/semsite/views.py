@@ -14,28 +14,12 @@ class AuthorView(ListView):
         return Person.objects.order_by('birthdate').all()
 
 
-class HandbookView(RedirectView):
-    pass
-
-
-    def get_redirect_url(self):
-        handbooks = HandbookArticle.objects.all()
-        if handbooks:
-            self.url = (reverse('handbook_article', kwargs={'urlname': handbooks[0].urlname}))
-        else:
-            raise Http404('There is no articles in db now')
-        print(self.url)
-        return super().get_redirect_url()
-
-
-
-class HandbookArticleView(TemplateView):
+class HandbookView(TemplateView):
     template_name = 'semsite/handbook.html'
 
     def get_context_data(self, **kwargs):
         handbook_articles = HandbookArticle.objects.all()
         context = super().get_context_data(**kwargs)
         context['handbook_articles'] = handbook_articles
-        context['handbook_article'] = get_object_or_404(HandbookArticle, urlname=kwargs['urlname'])
         return context
 
