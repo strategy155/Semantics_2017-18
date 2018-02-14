@@ -29,7 +29,7 @@ urlpatterns = [
     path('authors/', AuthorView.as_view(), name='authors'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
     path('dictionary/', DictionaryView.as_view(), name='dictionary'),
-    path('literacture/', LiteratureView.as_view(), name='literature'),
+    path('literature/', LiteratureView.as_view(), name='literature'),
     url(r'^publications/', include('publications_bootstrap.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
