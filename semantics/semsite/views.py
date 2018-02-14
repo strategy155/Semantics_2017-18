@@ -1,17 +1,18 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, reverse
-from django.views.generic import TemplateView, ListView, RedirectView
-from .models import HandbookArticle, Person
+from django.views.generic import TemplateView
+from .models import HandbookArticle, Author, Term
 
 
 class IndexView(TemplateView):
     template_name = 'semsite/index.html'
 
-class AuthorView(ListView):
+class AuthorView(TemplateView):
     template_name = 'semsite/authors.html'
-    context_object_name = 'authors'
 
-    def get_queryset(self):
-        return Person.objects.order_by('birthdate').all()
+    def get_context_data(self, **kwargs):
+        authors = Author.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['authors'] = authors
+        return context
 
 
 class HandbookView(TemplateView):
@@ -23,3 +24,12 @@ class HandbookView(TemplateView):
         context['handbook_articles'] = handbook_articles
         return context
 
+
+class DictionaryView(TemplateView):
+    template_name = 'semsite/dictionary.html'
+
+    def get_context_data(self, **kwargs):
+        dictionary = Term.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['terms'] = dictionary
+        return context

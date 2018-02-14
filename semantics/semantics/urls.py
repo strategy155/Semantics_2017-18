@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib import admin
-from semsite.views import IndexView, HandbookView, AuthorView
+from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     path('authors/', AuthorView.as_view(), name='authors'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
+    path('dictionary/', DictionaryView.as_view(), name='dictionary'),
     url(r'^tinymce/', include('tinymce.urls'))
-
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
