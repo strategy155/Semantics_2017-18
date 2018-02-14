@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'semsite',
     'tinymce',
+    'publications_bootstrap',
 ]
 
 MIDDLEWARE = [
