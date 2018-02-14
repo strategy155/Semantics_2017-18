@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib import admin
-from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView
+from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView, LiteratureView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('authors/', AuthorView.as_view(), name='authors'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
     path('dictionary/', DictionaryView.as_view(), name='dictionary'),
+    path('literacture/', LiteratureView.as_view(), name='literature'),
     url(r'^publications/', include('publications_bootstrap.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
