@@ -1,6 +1,7 @@
 from django.db import models
 import django.utils.timezone
 from tinymce.models import HTMLField
+from publications_bootstrap.models import Publication
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -28,15 +29,6 @@ class Idea(models.Model):
         return self.name
 
 
-
-class Publication(models.Model):
-    name = models.CharField(max_length=30)
-    ideas = models.ManyToManyField(Idea, blank=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -53,7 +45,6 @@ class Author(models.Model):
 
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
-    urlname = models.CharField(max_length=200, blank=True)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
     text = HTMLField()
     literature = models.ManyToManyField(Publication, blank=True)
