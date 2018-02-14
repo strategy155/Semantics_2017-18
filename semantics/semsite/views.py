@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from .models import HandbookArticle, Author, Term
+from .models import HandbookArticle, Author, Term, Publication
 
 
 class IndexView(TemplateView):
@@ -32,4 +32,14 @@ class DictionaryView(TemplateView):
         dictionary = Term.objects.all()
         context = super().get_context_data(**kwargs)
         context['terms'] = dictionary
+        return context
+
+
+class LiteratureView(TemplateView):
+    template_name = 'semsite/literature.html'
+
+    def get_context_data(self, **kwargs):
+        literature = Publication.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['literature'] = literature
         return context
