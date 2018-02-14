@@ -21,12 +21,6 @@ class Term(models.Model):
     def __str__(self):
         return self.name
 
-
-
-class Dictionary(models.Model):
-    terms = models.ManyToManyField(Term, blank=True)
-
-
 class Idea(models.Model):
     name = models.CharField(max_length=30)
 
@@ -43,7 +37,7 @@ class Publication(models.Model):
         return self.name
 
 
-class Person(models.Model):
+class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     bio = models.TextField(blank=True)
