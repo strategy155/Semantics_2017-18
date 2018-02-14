@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'semsite',
     'tinymce',
     'publications_bootstrap',
+    'ckeditor',
+    'ckeditor-uploader',
 ]
 
 MIDDLEWARE = [
@@ -130,4 +132,4 @@ STATIC_ROOT = '/home/semsite_server/semsite/static/'
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/home/semsite_server/semsite/media/'
 MEDIA_URL = '/media/'
-
+CKEDITOR_UPLOAD_PATH = "uploads/"
