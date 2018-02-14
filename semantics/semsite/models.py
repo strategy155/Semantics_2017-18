@@ -28,7 +28,6 @@ class Idea(models.Model):
         return self.name
 
 
-
 class Publication(models.Model):
     name = models.CharField(max_length=30)
     ideas = models.ManyToManyField(Idea, blank=True)
@@ -53,7 +52,6 @@ class Author(models.Model):
 
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
-    urlname = models.CharField(max_length=200, blank=True)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
     text = HTMLField()
     literature = models.ManyToManyField(Publication, blank=True)
