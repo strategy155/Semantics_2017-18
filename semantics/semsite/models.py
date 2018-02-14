@@ -1,6 +1,7 @@
 from django.db import models
 import django.utils.timezone
 from tinymce.models import HTMLField
+from publications_bootstrap.models import Publication
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -23,14 +24,6 @@ class Term(models.Model):
 
 class Idea(models.Model):
     name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
-
-
-class Publication(models.Model):
-    name = models.CharField(max_length=30)
-    ideas = models.ManyToManyField(Idea, blank=True)
 
     def __str__(self):
         return self.name
