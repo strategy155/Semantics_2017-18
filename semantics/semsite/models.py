@@ -2,6 +2,8 @@ from django.db import models
 import django.utils.timezone
 from tinymce.models import HTMLField
 from publications_bootstrap.models import Publication
+from ckeditor.fields import RichTextField
+
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -46,7 +48,7 @@ class Author(models.Model):
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
-    text = HTMLField()
+    text = RichTextField()
     literature = models.ManyToManyField(Publication, blank=True)
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
