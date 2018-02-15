@@ -1,32 +1,44 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404, reverse
-from django.views.generic import TemplateView, ListView, RedirectView
-from .models import HandbookArticle, Person
+from django.views.generic import TemplateView
+from .models import HandbookArticle, Author, Term, Publication
 
 
 class IndexView(TemplateView):
     template_name = 'semsite/index.html'
 
-class AuthorView(ListView):
+class AuthorView(TemplateView):
     template_name = 'semsite/authors.html'
-    context_object_name = 'authors'
+    def get_context_data(self, **kwargs):
+        authors = Author.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['authors'] = authors
+        return context
 
-    def get_queryset(self):
-        return Person.objects.order_by('birthdate').all()
 
 class HandbookView(TemplateView):
     template_name = 'semsite/handbook.html'
 
     def get_context_data(self, **kwargs):
+        handbook_articles = HandbookArticle.objects.all()
         context = super().get_context_data(**kwargs)
-        context['handbook_articles'] = HandbookArticle.objects.all()
+        context['handbook_articles'] = handbook_articles
         return context
 
 
-class HandbookArticleView(TemplateView):
-    template_name = 'semsite/handbook_article.html'
+class DictionaryView(TemplateView):
+    template_name = 'semsite/dictionary.html'
 
     def get_context_data(self, **kwargs):
+        dictionary = Term.objects.all()
         context = super().get_context_data(**kwargs)
-        context['handbook_article'] = get_object_or_404(HandbookArticle, title=kwargs['title'])
+        context['terms'] = dictionary
         return context
 
+
+class LiteratureView(TemplateView):
+    template_name = 'semsite/literature.html'
+
+    def get_context_data(self, **kwargs):
+        literature = Publication.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['literature'] = literature
+        return context

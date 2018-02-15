@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.urls import path
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from semsite.views import IndexView, HandbookView, HandbookArticleView, AuthorView
+from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView, LiteratureView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,6 +26,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view(), name='index'),
-    url(r'^authors/', AuthorView.as_view(), name='authors'),
-    url(r'^handbook/', HandbookView.as_view(), name='handbook'),
-]
+    path('authors/', AuthorView.as_view(), name='authors'),
+    path('handbook/', HandbookView.as_view(), name='handbook'),
+    path('dictionary/', DictionaryView.as_view(), name='dictionary'),
+    path('literature/', LiteratureView.as_view(), name='literature'),
+    url(r'^publications/', include('publications_bootstrap.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
