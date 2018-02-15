@@ -1,0 +1,41 @@
+{% extends 'semsite/base.html'%}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'semsite/js/basic_functions.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row main-row">
+	<div class="side-menu-icon-col col s1 visible" id="menu-column" style="min-height: 100vh;">
+		<i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer;">menu</i>
+	</div>
+
+    <div class="side-menu-col col s3 non-visible" id="menu-column2">
+    	<i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem; min-height: 100vh;">menu</i>
+	    <ul class="side-nav-fixed">
+	    <center>
+		</center>
+		</ul>
+	</div>
+
+	<div class="col s11 page-content-col" id="content-column" style="min-height: 100vh;">
+		<div>
+			<p class="page-header">Словарь</p>
+		</div>
+	</div>
+</div>
+
+<script>
+function showMenu() {
+    $('#menu-column2').toggleClass('non-visible visible');
+    $('#menu-column').toggleClass('visible non-visible');
+    $('#content-column').toggleClass('s11 s9');
+}
+</script>
+{% endblock %}
