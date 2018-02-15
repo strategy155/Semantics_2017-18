@@ -41,7 +41,7 @@ html, body {
 }
 
 .side-menu-item {
-    font-size: 1rem; 
+    font-size: 1rem !important; 
     line-height: 0.5rem;
     color: white !important;
     cursor: pointer;	

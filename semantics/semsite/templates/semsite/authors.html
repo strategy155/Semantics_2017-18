@@ -1,0 +1,26 @@
+{% extends 'semsite/base.html'%}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row main-row">
+	<div class="col s2 side-menu-col">
+		<ul class="side-nav-fixed">
+			<li class="bold"><a class="side-menu-item" href="#sec1"></a></li>
+		</ul>
+	</div>
+
+	<div class="col s10 page-content-col">
+		<div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
