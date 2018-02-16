@@ -7,7 +7,6 @@ class IndexView(TemplateView):
 
 class AuthorView(TemplateView):
     template_name = 'semsite/authors.html'
-
     def get_context_data(self, **kwargs):
         authors = Author.objects.all()
         context = super().get_context_data(**kwargs)

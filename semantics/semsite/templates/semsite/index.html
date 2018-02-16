@@ -8,18 +8,53 @@
 
 
 {% block content %}
+<script>
+function showMenu() {
+    $('#menu-column2').toggleClass('non-visible visible');
+    $('#menu-column').toggleClass('visible non-visible');
+    $('#content-column').toggleClass('s11 s9');
+}
 
+function changeData(title, text) {
+    $('#article-title').text(title);
+    $('#article-text').html(text);
+}
 
+$(document).ready(function(){  
+    function setEqualHeight(columns){
+        var tallestcolumn = 0;
+        columns.each(function(){
+            currentHeight = $(this).height();
+            if(currentHeight > tallestcolumn){
+               tallestcolumn  = currentHeight;
+            }
+        });
+        $('#menu-column').height(tallestcolumn + 300);
+        $('#menu-column2').height(tallestcolumn + 500); 
+        $('#content-column').height(tallestcolumn);
+
+    }
+        
+    setEqualHeight($('#menu-column, #content-column'));
+});
+</script>
 <div class="row main-row">
-	<div class="col s2 side-menu-col">
-		<ul class="side-nav-fixed">
+	<div class="side-menu-icon-col col s1 visible" id="menu-column">
+        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
+	</div>
+
+    <div class="side-menu-col col s3 non-visible" id="menu-column2">
+    	<i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem;">menu</i>
+	    <ul class="side-nav-fixed">
+	    <center>
 			<li class="bold"><a class="side-menu-item" href="#sec1">О проекте</a></li>
 			<li class="bold"><a class="side-menu-item" href="#sec2">Кто мы такие</a></li>
 			<li class="bold"><a class="side-menu-item" href="#sec3">Зачем все это</a></li>
+		</center>
 		</ul>
 	</div>
 
-	<div class="col s10 page-content-col">
+	<div class="container page-content-col col s11" id="content-column">
 		<div>
 			<p class="page-header" id="sec1">О проекте</p>
 			<p class="regular-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

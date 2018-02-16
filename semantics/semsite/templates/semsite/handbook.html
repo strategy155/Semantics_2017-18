@@ -5,34 +5,62 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
 <link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/handbook.css' %}">
 {% endblock %}
-
 
 {% block content %}
 <script>
-    function changeData(title, text) {
-        $('#article-title').text(title);
-        $('#article-text').html(text);
+function showMenu() {
+    $('#menu-column2').toggleClass('non-visible visible');
+    $('#menu-column').toggleClass('visible non-visible');
+    $('#content-column').toggleClass('s11 s9');
+}
+
+function changeData(title, text) {
+    $('#article-title').text(title);
+    $('#article-text').html(text);
+}
+
+$(document).ready(function(){  
+    function setEqualHeight(columns){
+        var tallestcolumn = 0;
+        columns.each(function(){
+            currentHeight = $(this).height();
+            if(currentHeight > tallestcolumn){
+               tallestcolumn  = currentHeight;
+            }
+        });
+        $('#menu-column').height(tallestcolumn - 100);
+        $('#menu-column2').height(tallestcolumn + 100); 
+        $('#content-column').height(tallestcolumn);
+
     }
+        
+    setEqualHeight($('#menu-column, #content-column'));
+});
 </script>
 
 <div class="row main-row">
+    <div class="side-menu-icon-col col s1 visible" id="menu-column">
+        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
+    </div>
 
-	<div class="col s2 side-menu-col">
-		<ul class="side-nav-fixed">
-			{% if handbook_articles %}
+    <div class="side-menu-col col s3 non-visible" id="menu-column2">
+        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem;">menu</i>
+        <ul class="side-nav-fixed">
+        <center>
+            {% if handbook_articles %}
                 {% for article in handbook_articles %}
                     <li class="bold"><a class="side-menu-item" onclick="changeData('{{ article.title }}', '{{ article.text|safe|fix_text }}')">{{ article.title }}</a></li>
                 {% endfor %}
-			{% else %}
-    			<li class="bold"><a class="side-menu-item">Название статьи</a></li>p>
-			{% endif %}
-		</ul>
-	</div>
+            {% else %}
+                <li class="bold"><a class="side-menu-item">Название статьи</a></li>
+            {% endif %}
+        </center>
+        </ul>
+    </div>
 
 {% if handbook_articles %}
-	<div class="col s10 page-content-col">
+	<div class="col s11 page-content-col" id="content-column">
         <p class="page-header" id="article-title">{{ handbook_articles.0.title }}</p>
         <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
         <div id="article-text">{{ handbook_articles.0.text|safe }}</div>
