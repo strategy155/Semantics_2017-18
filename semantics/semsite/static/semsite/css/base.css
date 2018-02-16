@@ -1,6 +1,39 @@
 html, body {
 	width: 100vw !important;
-	overflow-x: hidden;
+	overflow-x: hidden !important;
+	height: 100%;
+}
+
+.main-row {
+	width: 100% !important;
+	margin-bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+	height: 100% !important;
+}
+
+.side-menu-icon-col {
+	background-color: #29283f;
+	color: white;
+	padding-left: 2% !important;
+	padding-top: 35vh !important;
+}
+
+.side-menu-col {
+	background-color: #29283f;
+	color: white;
+	padding-top: 1.5% !important;
+	padding-left: 1.5% !important;
+}
+
+.page-content-col {
+	background-color: white;
+	color: #29283f;
+	margin-left: 0px !important;
+	padding-left: 4% !important;
+	padding-right: 4% !important;
+	padding-top: 3% !important;
+	padding-bottom: 3% !important;
 }
 
 .main-navbar {
@@ -32,7 +65,7 @@ html, body {
 }
 
 .hide-on-med-and-down {
-	margin-left: 17%;
+	margin-left: 8% !important;
 }
 
 .bold {
@@ -41,7 +74,7 @@ html, body {
 }
 
 .side-menu-item {
-    font-size: 1rem; 
+    font-size: 1.1rem !important; 
     line-height: 0.5rem;
     color: white !important;
     cursor: pointer;	
