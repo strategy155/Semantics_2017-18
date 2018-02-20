@@ -13,14 +13,15 @@ class AuthorView(TemplateView):
         context['authors'] = authors
         return context
 
-
 class HandbookView(TemplateView):
     template_name = 'semsite/handbook.html'
+
 
     def get_context_data(self, **kwargs):
         handbook_articles = HandbookArticle.objects.all()
         context = super().get_context_data(**kwargs)
         context['handbook_articles'] = handbook_articles
+        context['lit_cl'] = Publication
         return context
 
 
