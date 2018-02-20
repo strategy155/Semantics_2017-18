@@ -47,7 +47,7 @@ class Author(models.Model):
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
-    text = RichTextField(config_name='default'    )
+    text = RichTextField(config_name='default')
     literature = models.ManyToManyField(Publication, blank=True)
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
