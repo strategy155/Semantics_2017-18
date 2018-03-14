@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'tinymce',
     'publications_bootstrap',
     'ckeditor',
-    'ckeditor-uploader',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
