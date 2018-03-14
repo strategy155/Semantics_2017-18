@@ -2,8 +2,7 @@
 
 from django.db import migrations, models
 import django.utils.timezone
-import tinymce.models
-
+import ckeditor
 
 class Migration(migrations.Migration):
 
@@ -15,24 +14,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Author',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=30)),
-                ('last_name', models.CharField(max_length=30)),
-                ('bio', models.TextField(blank=True)),
-                ('photo', models.ImageField(blank=True, upload_to='uploads/')),
-                ('birthdate', models.DateField(default=django.utils.timezone.now)),
-                ('publications', models.ManyToManyField(blank=True, to='publications_bootstrap.Publication')),
-            ],
-        ),
-        migrations.CreateModel(
             name='HandbookArticle',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=200)),
                 ('main_image', models.ImageField(blank=True, upload_to='uploads/')),
-                ('text', tinymce.models.HTMLField()),
+                ('text', ckeditor.fields.RichTextField()),
             ],
         ),
         migrations.CreateModel(
