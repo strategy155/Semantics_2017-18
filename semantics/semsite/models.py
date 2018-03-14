@@ -44,14 +44,14 @@ class Author(models.Model):
         return self.first_name + ' ' + self.last_name
 
 
-
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
-    text = RichTextField()
     literature = models.ManyToManyField(Publication, blank=True)
+    text = RichTextField(config_name='default')
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
+
 
     def __str__(self):
         return self.title
