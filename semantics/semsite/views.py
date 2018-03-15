@@ -42,4 +42,5 @@ class LiteratureView(TemplateView):
         literature = Publication.objects.all()
         context = super().get_context_data(**kwargs)
         context['literature'] = literature
+
         return context
