@@ -17,10 +17,28 @@ class IdeaDescriptor:
 
 class Term(models.Model):
     letter = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name="Название", help_text="Если у термина несколько названий, разделяйте их запятыми")
     # translations = models.ManyToManyField(Translation)
-    translations = models.TextField(blank=True)
-    description = models.TextField(blank=True)
+    # translations = models.TextField(blank=True)
+    description = models.TextField(blank=False, verbose_name="Определение")
+
+
+    class Meta:
+        verbose_name = 'Термин'
+        verbose_name_plural = 'Термины'
+
+    def __init__(self, *args, **kwargs):
+        models.Model.__init__(self, *args, **kwargs)
+        self.get_names()
+
+
+    def get_names(self):
+        self.name = self.name.replace(', and ', ', ')
+        self.name = self.name.replace(',and ', ', ')
+        self.name = self.name.replace(' and ', ', ')
+        self.name = self.name.replace(';', ',')
+        self.names = [author.strip() for author in self.name.split(',')]
+
 
     def __str__(self):
         return self.name
@@ -30,6 +48,11 @@ class Idea(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    class Meta:
+        verbose_name = 'Идея'
+        verbose_name_plural = 'Идеи'
 
 
 class Author(models.Model):
@@ -45,6 +68,13 @@ class Author(models.Model):
         return self.first_name + ' ' + self.last_name
 
 
+    class Meta:
+        verbose_name = 'Автор'
+        verbose_name_plural = 'Авторы'
+
+
+
+
 class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
@@ -52,6 +82,11 @@ class HandbookArticle(models.Model):
     text = RichTextField(config_name='default')
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
+
+
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
 
 
     def __str__(self):
