@@ -27,7 +27,7 @@ class Term(models.Model):
         verbose_name_plural = 'Термины'
 
     def __init__(self, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+        models.Model.__init__(self, *args, **kwargs)
         self.get_names()
 
 
