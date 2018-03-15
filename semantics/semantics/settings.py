@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'publications_bootstrap',
     'ckeditor',
     'ckeditor_uploader',
+    'ordered_model',
 ]
 
 MIDDLEWARE = [
