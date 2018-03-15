@@ -3,7 +3,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -11,24 +11,19 @@
 {% endblock %}
 
 {% block content %}
+<div>
+    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+        <center><h1>Литература</h1></center>
+    </div>
+</div>
+
+
 <div class="row main-row">
-    <div class="side-menu-icon-col col s1 visible" id="menu-column" style="min-height: 100vh;">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
-    </div>
+    <div class="col s1"></div>
 
-    <div class="side-menu-col col s3 non-visible" id="menu-column2">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem; min-height: 100vh;">menu</i>
-        <ul class="side-nav-fixed">
-        <center>
-        </center>
-        </ul>
-    </div>
+    <div class="col s10"></div>
 
-    <div class="col s11 page-content-col" id="content-column" style="min-height: 100vh;">
-        <div>
-            <p class="page-header">Литература</p>
-        </div>
-    </div>
+    <div class="col s1"></div>
 </div>
 
 <script>

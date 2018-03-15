@@ -10,3 +10,7 @@ def fix_text(string):
     string = re.sub('\n', ' ', string)
     string = re.sub('\r', ' ', string)
     return string
+
+@register.filter
+def in_category(things, letter):
+    return things.filter(letter=letter)
