@@ -162,3 +162,6 @@ fabric.properties
 .idea/modules.xml
 .idea/semsite.iml
 .idea/vcs.xml
+/semantics/db.sqlite3
+/semantics/static/
+/semantics/media/

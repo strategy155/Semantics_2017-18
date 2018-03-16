@@ -1,6 +1,5 @@
 from django.db import models
 import django.utils.timezone
-from tinymce.models import HTMLField
 from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
 
