@@ -16,6 +16,7 @@ class IdeaDescriptor:
 
 
 class Term(models.Model):
+    letter = models.CharField(max_length=200)
     name = models.CharField(max_length=200, verbose_name="Название", help_text="Если у термина несколько названий, разделяйте их запятыми")
     # translations = models.ManyToManyField(Translation)
     # translations = models.TextField(blank=True)
