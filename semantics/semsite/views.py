@@ -31,8 +31,10 @@ class DictionaryView(TemplateView):
 
     def get_context_data(self, **kwargs):
         dictionary = Term.objects.all()
+        alphabet = list('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ')
         context = super().get_context_data(**kwargs)
         context['terms'] = dictionary
+        context['alphabet'] = alphabet
         return context
 
 

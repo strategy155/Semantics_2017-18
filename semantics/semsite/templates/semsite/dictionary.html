@@ -28,84 +28,39 @@
 <div class="row main-row">
 	<div class="col s1 nav-col">
 		<div class="letter-nav">
-			<center><a href="#let-a" class="side-letter"><p>А</p></a>
-			<center><a href="#let-b" class="side-letter"><p>Б</p></a>
-			<center><a href="#" class="side-letter"><p>В</p></a>
-			<center><a href="#" class="side-letter"><p>Г</p></a>
-			<center><a href="#" class="side-letter"><p>Д</p></a>
-			<center><a href="#" class="side-letter"><p>Е</p></a>
-			<center><a href="#" class="side-letter"><p>Ё</p></a>
-			<center><a href="#" class="side-letter"><p>Ж</p></a>
-			<center><a href="#" class="side-letter"><p>З</p></a>
-			<center><a href="#" class="side-letter"><p>И</p></a>
-			<center><a href="#" class="side-letter"><p>Й</p></a>
-			<center><a href="#" class="side-letter"><p>К</p></a>
-			<center><a href="#" class="side-letter"><p>Л</p></a>
-			<center><a href="#" class="side-letter"><p>М</p></a>
-			<center><a href="#" class="side-letter"><p>Н</p></a>
-			<center><a href="#" class="side-letter"><p>О</p></a>
-			<center><a href="#" class="side-letter"><p>П</p></a>
-			<center><a href="#" class="side-letter"><p>Р</p></a>
-			<center><a href="#" class="side-letter"><p>С</p></a>
-			<center><a href="#" class="side-letter"><p>Т</p></a>
-			<center><a href="#" class="side-letter"><p>У</p></a>
-			<center><a href="#" class="side-letter"><p>Ф</p></a>
-			<center><a href="#" class="side-letter"><p>Х</p></a>
-			<center><a href="#" class="side-letter"><p>Ц</p></a>
-			<center><a href="#" class="side-letter"><p>Ч</p></a>
-			<center><a href="#" class="side-letter"><p>Ш</p></a>
-			<center><a href="#" class="side-letter"><p>Щ</p></a>
-			<center><a href="#" class="side-letter"><p>ъ</p></a>
-			<center><a href="#" class="side-letter"><p>Ы</p></a>
-			<center><a href="#" class="side-letter"><p>Ь</p></a>
-			<center><a href="#" class="side-letter"><p>Э</p></a>
-			<center><a href="#" class="side-letter"><p>Ю</p></a>
-			<center><a href="#" class="side-letter"><p>Я</p></a>	
+			<center>
+			{% for letter in alphabet %}
+				<a href="#{{ letter }}" class="side-letter"><p>{{ letter }}</p></a>
+			{% endfor %}
+		    </center>
 		</div>
 	</div>
 
 	<div class="col s10 page-content-col" id="content-column">
-		<div class="dict-row row">
-			<div class="letter-col col s3">
-				<p class="dict-letter" id="let-a">A</p>
-			</div>
+		{% for letter in alphabet %}
+		    {% if terms|in_category:letter %}
+				<div class="dict-row row">
+					<div class="letter-col col s3">
+						<p class="dict-letter" id="{{ letter }}">{{ letter }}</p>
+					</div>
 
-			<div class="col s9">
-				<div class="termins-row">
-					{% for term in terms|in_category:'А' %}
-                        {% if forloop.counter0|divisibleby:3 %}
-                            </div>
-                            <div class="termins-row">
-                        {% endif %}
+					<div class="col s9">
+						<div class="termins-row">
+							{% for term in terms|in_category:letter %}
+		                        {% if forloop.counter0|divisibleby:3 %}
+		                            </div>
+		                            <div class="termins-row">
+		                        {% endif %}
 
-						<div class="col s4">
-							<a class="termin" href="{% url 'termin' term.id %}"><p>{{ term.name }}</p></a>  
+								<div class="col s4">
+									<a class="termin" href="{% url 'termin' term.id %}"><p>{{ term.name }}</p></a>  
+								</div>
+							{% endfor %}
 						</div>
-					{% endfor %}
+				    </div>
 				</div>
-		    </div>
-		</div>
-
-		<div class="dict-row row">
-			<div class="letter-col col s3">
-				<p class="dict-letter" id="let-b">Б</p>
-			</div>
-
-			<div class="col s9">
-				<div class="termins-row">
-					{% for term in terms|in_category:'Б' %}
-                        {% if forloop.counter0|divisibleby:3 %}
-                            </div>
-                            <div class="termins-row">
-                        {% endif %}
-
-						<div class="col s4">
-							<a class="termin" href="#"><p>{{ term.name }}</p></a>  
-						</div>
-					{% endfor %}
-				</div>
-		    </div>
-		</div>
+			{% endif %}
+		{% endfor %}
 	</div>
 
 	<div class="col s1"></div>
