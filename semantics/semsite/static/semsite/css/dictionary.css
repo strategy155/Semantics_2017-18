@@ -79,3 +79,22 @@
 .side-letter:hover {
 	font-weight: 900;
 }
+
+.termin-name {
+	font-size: 2rem;
+	font-weight: 900;
+	margin-top: 0px;
+}
+
+.termin-description {
+	font-size: 1.2rem;
+}
+
+.back-to-terms { 
+	color: #b43630;
+	font-size: 1.1rem;
+}
+
+.back-to-terms:hover {
+	border-bottom: 1px solid #b43630;
+}

@@ -26,18 +26,6 @@
 </div>
 
 <div class="row main-row">
-	<!--<div class="side-menu-icon-col col s1 visible" id="menu-column" style="min-height: 100vh;">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
-	</div>
-
-    <div class="side-menu-col col s3 non-visible" id="menu-column2">
-    	<i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem; min-height: 100vh;">menu</i>
-	    <ul class="side-nav-fixed">
-	    <center>
-		</center>
-		</ul>
-	</div>-->
-
 	<div class="col s1 nav-col">
 		<div class="letter-nav">
 			<center><a href="#let-a" class="side-letter"><p>А</p></a>
@@ -91,7 +79,7 @@
                         {% endif %}
 
 						<div class="col s4">
-							<a class="termin" href="#"><p>{{ term.name }}</p></a>  
+							<a class="termin" href="{% url 'termin' term.id %}"><p>{{ term.name }}</p></a>  
 						</div>
 					{% endfor %}
 				</div>
@@ -123,11 +111,4 @@
 	<div class="col s1"></div>
 </div>
 
-<!--<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
-</script>-->
 {% endblock %}

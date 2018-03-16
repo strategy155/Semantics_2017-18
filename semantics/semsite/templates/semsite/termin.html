@@ -1,0 +1,25 @@
+{% extends 'semsite/base.html'%}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row main-row">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col">
+    	<p class="termin-name">{{ term.name }}</p>
+    	<p class="termin-description">{{ term.description|safe }}</p>
+    	<br>
+
+    	<a class="back-to-terms" href="{% url 'dictionary' %}">Назад ко всем терминам</a>
+    </div>
+
+    <div class="col s1"></div>
+</div>
+
+{% endblock %}

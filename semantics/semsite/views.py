@@ -1,9 +1,10 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from .models import HandbookArticle, Author, Term, Publication
 
 
 class IndexView(TemplateView):
     template_name = 'semsite/index.html'
+
 
 class AuthorView(TemplateView):
     template_name = 'semsite/authors.html'
@@ -13,9 +14,9 @@ class AuthorView(TemplateView):
         context['authors'] = authors
         return context
 
+
 class HandbookView(TemplateView):
     template_name = 'semsite/handbook.html'
-
 
     def get_context_data(self, **kwargs):
         handbook_articles = HandbookArticle.objects.all()
@@ -33,6 +34,13 @@ class DictionaryView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['terms'] = dictionary
         return context
+
+
+class DictionaryDetailView(DetailView):
+    model = Term
+    template_name = 'semsite/termin.html'
+    context_object_name = 'term'
+    queryset = Term.objects.all()
 
 
 class LiteratureView(TemplateView):
