@@ -8,10 +8,29 @@ class IndexView(TemplateView):
 
 class AuthorView(TemplateView):
     template_name = 'semsite/authors.html'
+
     def get_context_data(self, **kwargs):
         authors = Author.objects.all()
+        print(Author.objects.values_list('publications'))
+        alphabet = list('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ')
         context = super().get_context_data(**kwargs)
         context['authors'] = authors
+        context['alphabet'] = alphabet
+        return context
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    template_name = 'semsite/personality.html'
+    context_object_name = 'author'
+
+    def get_context_data(self, **kwargs):
+        authors = Author.objects.all()
+
+        publications = Publication.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['authors'] = authors
+        context['publications'] = publications
         return context
 
 

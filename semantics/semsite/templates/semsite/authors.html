@@ -1,5 +1,6 @@
 {% extends 'semsite/base.html'%}
 {% load static %}
+{% load commands %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
@@ -12,25 +13,50 @@
 
 {% block content %}
 <div>
-    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
-        <center><h1>Личности</h1></center>
-    </div>
+	<div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+	    <center><h1>Личности</h1></center>
+	</div>
 </div>
-
 
 <div class="row main-row">
-    <div class="col s1"></div>
+	<div class="col s1 nav-col">
+		<div class="letter-nav">
+			<center>
+			{% for letter in alphabet %}
+				<a href="#{{ letter }}" class="side-letter"><p>{{ letter }}</p></a>
+			{% endfor %}
+		    </center>
+		</div>
+	</div>
 
-    <div class="col s10"></div>
+	<div class="col s10 page-content-col" id="content-column">
+		{% for letter in alphabet %}
+		    {% if authors|in_category_authors:letter %}
+				<div class="dict-row row">
+					<div class="letter-col col s3">
+						<p class="dict-letter" id="{{ letter }}">{{ letter }}</p>
+					</div>
 
-    <div class="col s1"></div>
+					<div class="col s9">
+						<div class="termins-row">
+							{% for author in authors|in_category_authors:letter %}
+		                        {% if forloop.counter0|divisibleby:3 %}
+		                            </div>
+		                            <div class="termins-row">
+		                        {% endif %}
+
+								<div class="col s4">
+									<a class="termin" href="{% url 'personality' author.id %}"><p>{{ author.last_name }}, {{ author.first_name}}</p></a>  
+								</div>
+							{% endfor %}
+						</div>
+				    </div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="col s1"></div>
 </div>
 
-<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
-</script>
 {% endblock %}

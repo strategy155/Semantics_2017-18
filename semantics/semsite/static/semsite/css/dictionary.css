@@ -98,3 +98,7 @@
 .back-to-terms:hover {
 	border-bottom: 1px solid #b43630;
 }
+
+.bio {
+	font-size: 1.1rem;
+}
