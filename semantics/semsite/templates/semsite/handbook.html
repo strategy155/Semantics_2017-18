@@ -7,40 +7,49 @@
 <link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
 {% endblock %}
 
+{% block js %}
+<script>
+$(document).ready(function(){  
+    $(".button-collapse").sideNav();
+
+    $(window).scroll(function() {
+        scrollTop = $(window).scrollTop();
+        console.log('kek');
+        
+        if (scrollTop >= 55) {
+            $('.menu-button').css('color', '#29283f')
+        } else {
+            $('.menu-button').css('color', 'white')
+        }
+    });
+});
+</script>
+{% endblock %}
+
 {% block content %}
 <script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
-
 function changeData(title, text) {
     $('#article-title').text(title);
     $('#article-text').html(text);
 }
-
-$(document).ready(function(){  
-    function setEqualHeight(columns){
-        var tallestcolumn = 0;
-        columns.each(function(){
-            currentHeight = $(this).height();
-            if(currentHeight > tallestcolumn){
-               tallestcolumn  = currentHeight;
-            }
-        });
-        $('#menu-column').height(tallestcolumn - 100);
-        $('#menu-column2').height(tallestcolumn + 100); 
-        $('#content-column').height(tallestcolumn);
-
-    }
-        
-    setEqualHeight($('#menu-column, #content-column'));
-});
 </script>
 
-<div class="row main-row">
-    <div class="side-menu-icon-col col s1 visible" id="menu-column">
+<ul id="slide-out" class="side-nav" style="background-color: #29283f; color: white !important; padding-top: 3%; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+    <center>
+        {% if handbook_articles %}
+            {% for article in handbook_articles %}
+                <li class="bold"><a class="side-menu-item" onclick="changeData('{{ article.title }}', '{{ article.text|safe|fix_text }}')">{{ article.title }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li class="bold"><a class="side-menu-item">Название статьи</a></li>
+        {% endif %}
+    </center>
+  </ul>
+
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu" style="color: white; cursor: pointer; font-size: 2.4rem; position: fixed; top: 1.9%; left: 2%; transition: all 0.4s;">menu</i></a>
+
+<div class="row main-row" style="margin-top: 1%;">
+    <!--<div class="side-menu-icon-col col s1 visible" id="menu-column">
         <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
     </div>
 
@@ -57,18 +66,19 @@ $(document).ready(function(){
             {% endif %}
         </center>
         </ul>
-    </div>
+    </div>-->
+<div class="col s1"></div>
 
-{% if handbook_articles %}
-	<div class="col s11 page-content-col" id="content-column">
+<div class="col s10 page-content-col" id="content-column">
+    {% if handbook_articles %}
         <p class="page-header" id="article-title">{{ handbook_articles.0.title }}</p>
         <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
         <div id="article-text">{{ handbook_articles.0.text|safe }}</div>
-{% else %}
-    <p style="margin: 0px;">No articles.</p>
-{% endif %}
-
-	</div>
+    {% else %}
+        <p style="margin: 0px;">No articles.</p>
+    {% endif %}
 </div>
+
+<div class="col s1"></div>
 
 {% endblock %}
