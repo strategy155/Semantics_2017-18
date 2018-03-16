@@ -13,4 +13,4 @@ def fix_text(string):
 
 @register.filter
 def in_category(things, letter):
-    return things.filter(letter=letter)
+    return things.filter(name__startswith=letter.lower())
