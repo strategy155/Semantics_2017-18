@@ -12,7 +12,7 @@
 $(document).ready(function(){  
     $(".button-collapse").sideNav();
 
-    $(window).scroll(function() {
+    /*$(window).scroll(function() {
         scrollTop = $(window).scrollTop();
         console.log('kek');
         
@@ -21,7 +21,7 @@ $(document).ready(function(){
         } else {
             $('.menu-button').css('color', 'white')
         }
-    });
+    }); */
 });
 </script>
 {% endblock %}
@@ -34,7 +34,7 @@ function changeData(title, text) {
 }
 </script>
 
-<ul id="slide-out" class="side-nav" style="background-color: #29283f; color: white !important; padding-top: 3%; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+<ul id="slide-out" class="side-nav" style="background-color: #29283f; z-index: 10000; color: white !important; padding-top: 3%; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
     <center>
         {% if handbook_articles %}
             {% for article in handbook_articles %}
@@ -46,7 +46,7 @@ function changeData(title, text) {
     </center>
   </ul>
 
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu" style="color: white; cursor: pointer; font-size: 2.4rem; position: fixed; top: 1.9%; left: 2%; transition: all 0.4s;">menu</i></a>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu" style="color: white; cursor: pointer; font-size: 2.4rem; z-index: 1000; position: fixed; top: 1.9%; left: 2%; transition: all 0.4s;">menu</i></a>
 
 <div class="row main-row" style="margin-top: 1%;">
     <!--<div class="side-menu-icon-col col s1 visible" id="menu-column">
