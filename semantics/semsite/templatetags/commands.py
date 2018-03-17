@@ -12,5 +12,10 @@ def fix_text(string):
     return string
 
 @register.filter
-def in_category(things, letter):
-    return things.filter(name__startswith=letter.lower())
+def in_category_terms(category, letter):
+    return category.filter(name__startswith=letter.lower()).order_by('name')
+
+
+@register.filter
+def in_category_authors(category, letter):
+    return category.filter(last_name__startswith=letter).order_by('last_name')
