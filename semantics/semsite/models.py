@@ -3,7 +3,7 @@ import django.utils.timezone
 from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
-
+import unidecode
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -62,6 +62,12 @@ class Author(models.Model):
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now,blank=False)
+    slug = models.SlugField(blank=True)
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(unidecode.unidecode(self.first_name +' ' +self.last_name))
+        super(Author, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

@@ -24,12 +24,13 @@ from django.conf.urls.static import static
 
 
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('accounts/', include('registration.backends.simple.urls')),
+    #path('accounts/', include('registration.backends.simple.urls')),
     url(r'^$', IndexView.as_view(), name='index'),
     path('authors/', AuthorView.as_view(), name='authors'),
-    url(r'^authors/(?P<pk>\d+)$', AuthorDetailView.as_view(), name='personality'),
+    url(r'^authors/(?P<slug>[\w-]+)$', AuthorDetailView.as_view(), name='personality'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
     url(r'^handbook/(?P<pk>\d+)$', HandbookDetailView.as_view(), name='article'),
     path('dictionary/', DictionaryView.as_view(), name='dictionary'),
