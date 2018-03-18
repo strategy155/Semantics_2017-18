@@ -81,7 +81,9 @@ class LiteratureView(TemplateView):
 
     def get_context_data(self, **kwargs):
         literature = Publication.objects.all()
+        alphabet = list('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ')
         context = super().get_context_data(**kwargs)
         context['literature'] = literature
+        context['alphabet'] = alphabet
 
         return context

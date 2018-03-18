@@ -7,25 +7,14 @@
     <div class="col s1"></div>
 
     <div class="col s10 page-content-col">
-    	<!--<div class="row">
-    		<div class="col s3">
-		    	<img style="height: 350px;" src="{{ author.photo.url }}">
-		    </div>
-
-		    <div class="col s9">
-		    	<p class="termin-name">{{ author.last_name }}, {{ author.first_name }}</p>
-		    	<p class="bio">{{ author.bio|safe }}</p>
-		    	<p class="bio">{{ author.bio|safe }}</p>
-
-		    	<a class="back-to-terms" href="{% url 'authors' %}">Назад к списку персоналий</a>
-		    </div>
-        </div> -->
-
     	<p class="termin-name">{{ author.last_name }}, {{ author.first_name }}</p>
     	<p class="bio-header">Биография:</p>
     	
     	<p class="bio">
-    		<img class="author-photo" src="{{ author.photo.url }}">
+    		{% if author.photo %}
+                <img class="author-photo" src="{{ author.photo.url }}">
+            {% endif %}
+
     		{{ author.bio|safe }}
     		<br>
     	</p>
@@ -33,9 +22,11 @@
     	<p class="bio-header">Публикации:</p>
 
     	<ul class="browser-default">
-    		{% for pub in author.publications.all %}
-    		    <li><p class="bio">{{ pub.title }}</p></li>
-    		{% endfor %}
+            {% if author.publications %}
+        		{% for pub in author.publications.all %}
+        		    <li><p class="bio">{{ pub.title }}</p></li>
+        		{% endfor %}
+            {% endif %}
     	</ul>
         
         <br>
