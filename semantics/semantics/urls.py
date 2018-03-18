@@ -32,6 +32,6 @@ urlpatterns = [
     path('dictionary/', DictionaryView.as_view(), name='dictionary'),
     url(r'^dictionary/(?P<pk>\d+)$', DictionaryDetailView.as_view(), name='termin'),
     path('literature/', LiteratureView.as_view(), name='literature'),
-    url(r'^publications/', include('publications_bootstrap.urls')),
+    # url(r'^publications/', include('publications_bootstrap.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
