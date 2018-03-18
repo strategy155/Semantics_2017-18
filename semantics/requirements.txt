@@ -16,3 +16,4 @@ static3>=0.7.0
 wincertstore>=0.2
 django-ckeditor>=5.4.0
 django-js-asset>=1.0.0
+unidecode>=1.0.22
