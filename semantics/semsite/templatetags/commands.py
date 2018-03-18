@@ -18,4 +18,8 @@ def in_category_terms(category, letter):
 
 @register.filter
 def in_category_authors(category, letter):
-    return category.filter(last_name__startswith=letter).order_by('last_name')
+    return category.filter(last_name__istartswith=letter).order_by('last_name')
+
+@register.filter
+def in_category_books(category, letter):
+    return category.filter(title__istartswith=letter).order_by('title')
