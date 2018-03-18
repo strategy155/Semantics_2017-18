@@ -2,15 +2,6 @@
 {% load static %}
 {% load commands %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
-{% endblock %}
-
-{% block js %}
-<script src="{% static 'semsite/js/basic_functions.js' %}"></script>
-{% endblock %}
-
 {% block content %}
 <div>
 	<div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
@@ -46,7 +37,7 @@
 		                        {% endif %}
 
 								<div class="col s4">
-									<a class="termin" href="{% url 'personality' author.id %}"><p>{{ author.last_name }}, {{ author.first_name}}</p></a>  
+									<a class="termin" href="{% url 'personality' author.slug %}"><p>{{ author.last_name }}, {{ author.first_name}}</p></a>
 								</div>
 							{% endfor %}
 						</div>

@@ -2,7 +2,8 @@ from django.db import models
 import django.utils.timezone
 from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
-
+from django.utils.text import slugify
+import unidecode
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -15,23 +16,21 @@ class IdeaDescriptor:
 
 
 class Term(models.Model):
-    # letter = models.CharField(max_length=200)
-    name = models.CharField(max_length=200, verbose_name="Название", help_text="Если у термина несколько названий, разделяйте их запятыми")
-    # translations = models.ManyToManyField(Translation)
-    # translations = models.TextField(blank=True)
-    description = models.TextField(blank=False, verbose_name="Определение")
-
-
     class Meta:
         verbose_name = 'Термин'
         verbose_name_plural = 'Термины'
 
+    # letter = models.CharField(max_length=200)
+    # translations = models.ManyToManyField(Translation)
+    # translations = models.TextField(blank=True)
+
+    name = models.CharField(max_length=200, verbose_name="Название", 
+        help_text="Если у термина несколько названий, разделяйте их запятыми")
+    description = models.TextField(blank=False, verbose_name="Определение")
+
     def __init__(self, *args, **kwargs):
         models.Model.__init__(self, *args, **kwargs)
         self.get_names()
-
-
-
 
     def get_names(self):
         self.name = self.name.replace(', and ', ', ')
@@ -40,16 +39,15 @@ class Term(models.Model):
         self.name = self.name.replace(';', ',')
         self.names = [author.strip() for author in self.name.split(',')]
 
-
     def __str__(self):
         return self.name
+
 
 class Idea(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
-
 
     class Meta:
         verbose_name = 'Идея'
@@ -64,10 +62,12 @@ class Author(models.Model):
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now,blank=False)
+    default_slug = slugify(unidecode.unidecode(self.first_name + ' ' + self.last_name))
+
+
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
-
 
     class Meta:
         verbose_name = 'Автор'

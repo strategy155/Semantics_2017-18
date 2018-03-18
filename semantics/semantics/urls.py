@@ -16,19 +16,23 @@ Including another URLconf
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib import admin
-from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView, LiteratureView, DictionaryDetailView, AuthorDetailView
+from semsite.views import IndexView, HandbookView, AuthorView, DictionaryView, \
+LiteratureView, DictionaryDetailView, AuthorDetailView, HandbookDetailView
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    #path('accounts/', include('registration.backends.simple.urls')),
     url(r'^$', IndexView.as_view(), name='index'),
     path('authors/', AuthorView.as_view(), name='authors'),
-    url(r'^authors/(?P<pk>\d+)$', AuthorDetailView.as_view(), name='personality'),
+    url(r'^authors/(?P<slug>[\w-]+)$', AuthorDetailView.as_view(), name='personality'),
     path('handbook/', HandbookView.as_view(), name='handbook'),
+    url(r'^handbook/(?P<pk>\d+)$', HandbookDetailView.as_view(), name='article'),
     path('dictionary/', DictionaryView.as_view(), name='dictionary'),
     url(r'^dictionary/(?P<pk>\d+)$', DictionaryDetailView.as_view(), name='termin'),
     path('literature/', LiteratureView.as_view(), name='literature'),

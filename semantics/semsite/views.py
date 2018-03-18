@@ -11,7 +11,6 @@ class AuthorView(TemplateView):
 
     def get_context_data(self, **kwargs):
         authors = Author.objects.all()
-        print(Author.objects.values_list('publications'))
         alphabet = list('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ')
         context = super().get_context_data(**kwargs)
         context['authors'] = authors
@@ -37,6 +36,19 @@ class AuthorDetailView(DetailView):
 class HandbookView(TemplateView):
     template_name = 'semsite/handbook.html'
 
+    def get_context_data(self, **kwargs):
+        handbook_articles = HandbookArticle.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['handbook_articles'] = handbook_articles
+        context['lit_cl'] = Publication
+        return context
+
+
+class HandbookDetailView(DetailView):
+    model = HandbookArticle
+    template_name = 'semsite/article.html'
+    context_object_name = 'article'
+    
     def get_context_data(self, **kwargs):
         handbook_articles = HandbookArticle.objects.all()
         context = super().get_context_data(**kwargs)

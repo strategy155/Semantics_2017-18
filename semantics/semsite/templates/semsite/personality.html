@@ -1,26 +1,12 @@
 {% extends 'semsite/base.html' %}
 {% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
-<style>
-ul.browser-default {
-  list-style-type: initial;
-}
-
-ul.browser-default li {
-  list-style-type: initial;
-}
-</style>
-{% endblock %}
-
 {% block content %}
 
 <div class="row main-row" style="margin-top: 1%;">
     <div class="col s1"></div>
 
-    <div class="col s10 page-content-col" style="text-align: justify;">
+    <div class="col s10 page-content-col">
     	<!--<div class="row">
     		<div class="col s3">
 		    	<img style="height: 350px;" src="{{ author.photo.url }}">
@@ -36,15 +22,15 @@ ul.browser-default li {
         </div> -->
 
     	<p class="termin-name">{{ author.last_name }}, {{ author.first_name }}</p>
-    	<p style="font-size: 1.4rem;">Биография:</p>
+    	<p class="bio-header">Биография:</p>
     	
     	<p class="bio">
-    		<img style="height: 350px; float: right; margin-left: 4%; margin-bottom: 3%;" src="{{ author.photo.url }}">
+    		<img class="author-photo" src="{{ author.photo.url }}">
     		{{ author.bio|safe }}
     		<br>
     	</p>
 
-    	<p style="font-size: 1.4rem;">Публикации:</p>
+    	<p class="bio-header">Публикации:</p>
 
     	<ul class="browser-default">
     		{% for pub in author.publications.all %}
