@@ -1,7 +1,7 @@
 <ul id="slide-out" class="side-nav handbook-menu">
         {% if handbook_articles %}
             {% for article in handbook_articles %}
-                <li class="bold"><a class="side-menu-item" href="{% url 'article' article.id %}">{{ article.title }}</a></li>
+                <li class="bold"><a class="side-menu-item" href="{% url 'article' article.slug %}">{{ article.title }}</a></li>
             {% endfor %}
         {% endif %}
   </ul>

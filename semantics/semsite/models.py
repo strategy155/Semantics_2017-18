@@ -4,6 +4,7 @@ from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 import unidecode
+from autoslug import AutoSlugField
 
 # class Translation(models.Model):
 #     language = models.CharField(max_length=200)
@@ -15,7 +16,12 @@ class IdeaDescriptor:
         return [pub.ideas.all() for pub in instance.publications.all()]
 
 
+
+
 class Term(models.Model):
+    def slugify(self):
+        return slugify(unidecode.unidecode(self.name))
+
     class Meta:
         verbose_name = 'Термин'
         verbose_name_plural = 'Термины'
@@ -27,6 +33,8 @@ class Term(models.Model):
     name = models.CharField(max_length=200, verbose_name="Название", 
         help_text="Если у термина несколько названий, разделяйте их запятыми")
     description = models.TextField(blank=False, verbose_name="Определение")
+    slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
+
 
     def __init__(self, *args, **kwargs):
         models.Model.__init__(self, *args, **kwargs)
@@ -55,6 +63,10 @@ class Idea(models.Model):
 
 
 class Author(models.Model):
+    def slugify(self):
+        return slugify(unidecode.unidecode(self.first_name + '-' + self.last_name))
+
+
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     bio = models.TextField(blank=True)
@@ -62,12 +74,7 @@ class Author(models.Model):
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now,blank=False)
-    slug = models.SlugField(blank=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(unidecode.unidecode(self.first_name + ' ' + self.last_name))
-        super(Author, self).save(*args, **kwargs)
+    slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -80,12 +87,17 @@ class Author(models.Model):
 
 
 class HandbookArticle(models.Model):
+    def slugify(self):
+        return slugify(unidecode.unidecode(self.title))
+
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
     literature = models.ManyToManyField(Publication, blank=True)
     text = RichTextField(config_name='default')
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
+    slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
+
 
 
     class Meta:
