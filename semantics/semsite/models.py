@@ -62,9 +62,12 @@ class Author(models.Model):
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now,blank=False)
-    default_slug = slugify(unidecode.unidecode(self.first_name + ' ' + self.last_name))
+    slug = models.SlugField(blank=True)
 
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode.unidecode(self.first_name + ' ' + self.last_name))
+        super(Author, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
