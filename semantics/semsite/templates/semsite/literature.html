@@ -37,14 +37,14 @@
 			    			<div class="row">
 			    				<div class="col s4">
 			    					{% if book.image %}
-			    						<img src="{{ book.image.url }}" height="200px;">
+			    						<img class="book-image" src="{{ book.image.url }}">
 			    				    {% else %}
-			    				        <img src="{% static 'semsite/img/no-image.png' %}" height="200px;">
+			    				        <img class="book-image" src="{% static 'semsite/img/no-image.png' %}">
 			    				    {% endif %}
 			    				</div>
 
-			    				<div class="col s8">
-			    					<p class="book-title">{{ book.title }}</p>
+			    				<div class="col s8 book-info-col">
+			    					<a class="book-link" href="{% url 'book' book.id %}"><p class="book-title">{{ book.title }}</p></a>
 			    					<p class="book-info"><b>Автор:</b> {{ book.authors }}</p>
 			    					<p class="book-info"><b>Год издания:</b> {{ book.year }}</p>	
 			    				</div>

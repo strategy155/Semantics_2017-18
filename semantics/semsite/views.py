@@ -87,3 +87,16 @@ class LiteratureView(TemplateView):
         context['alphabet'] = alphabet
 
         return context
+
+
+class LiteratureDetailView(DetailView):
+    model = Publication
+    template_name = 'semsite/book.html'
+    context_object_name = 'book'
+
+    def get_context_data(self, **kwargs):
+        publications = Publication.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['publications'] = publications
+
+        return context
