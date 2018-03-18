@@ -13,7 +13,7 @@ def fix_text(string):
 
 @register.filter
 def in_category_terms(category, letter):
-    return category.filter(name__istartswith=letter).order_by('name')
+    return category.filter(name__startswith=letter.lower()).order_by('name')
 
 
 @register.filter

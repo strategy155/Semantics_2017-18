@@ -165,3 +165,4 @@ fabric.properties
 /semantics/db.sqlite3
 /semantics/static/
 /semantics/media/
+/semantics/semsite/static/
