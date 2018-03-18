@@ -19,15 +19,15 @@
     		<br>
     	</p>
 
-    	<p class="bio-header">Публикации:</p>
+        {% if author.publications.all %}
+        	<p class="bio-header">Публикации:</p>
 
-    	<ul class="browser-default">
-            {% if author.publications %}
-        		{% for pub in author.publications.all %}
-        		    <li><p class="bio">{{ pub.title }}</p></li>
-        		{% endfor %}
-            {% endif %}
-    	</ul>
+        	<ul class="browser-default">
+            		{% for pub in author.publications.all %}
+            		    <li><p class="bio">{{ pub.title }}</p></li>
+            		{% endfor %}
+        	</ul>
+        {% endif %}
         
         <br>
     	<a class="back-to-terms" href="{% url 'authors' %}">Назад к списку персоналий</a>

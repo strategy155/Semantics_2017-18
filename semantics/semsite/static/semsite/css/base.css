@@ -1,0 +1,316 @@
+html, body {
+	width: 100vw !important;
+	overflow-x: hidden !important;
+}
+
+
+.page-header {
+	font-size: 1.6rem;
+}
+
+.page-header:first-child {
+    margin-top: 0px !important;
+ }
+
+ .regular-text {
+ 	font-size: 1.1rem;
+ 	text-align: justify;
+ }
+
+ .bold {
+	line-height: 44px !important;
+}
+
+.visible {
+	display: block;
+}
+
+.non-visible {
+	display: none;
+}
+
+.main-row {
+	width: 100% !important;
+	margin-bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+	height: 100% !important;
+	margin-top: 1%;
+}
+
+.side-menu-icon-col {
+	background-color: #29283f;
+	color: white;
+	padding-left: 2% !important;
+	padding-top: 35vh !important;
+}
+
+.side-menu-col {
+	background-color: #29283f;
+	color: white;
+	padding-top: 1.5% !important;
+	padding-left: 1.5% !important;
+}
+
+.page-content-col {
+	background-color: white;
+	color: #29283f;
+	margin-left: 0px !important;
+	padding-left: 0% !important;
+	padding-right: 0% !important;
+	padding-top: 3% !important;
+	padding-bottom: 3% !important;
+	text-align: justify;
+}
+
+.main-navbar {
+	background-color: #b43630;
+}
+
+.brand-logo {
+	width: 17%;
+}
+
+.main-menu-items {
+    font-size: 1.1rem !important;	
+}
+
+.logo-img {
+	width: 90%;
+	margin-top: 15%;
+	margin-left: 17%;
+}
+
+.logo-title-col {
+	padding-left: 1% !important;
+}
+
+.logo-title {
+	font-size: 1.1vw;
+	line-height: 1.4vw;
+	margin-top: 14%;
+}
+
+.hide-on-med-and-down {
+	margin-left: 7% !important;
+}
+
+.bold {
+    line-height: 35px;
+    cursor: pointer !important;
+}
+
+.side-menu-item {
+    font-size: 1.1rem !important; 
+    line-height: 0.5rem;
+    color: white !important;
+    cursor: pointer;
+    text-align: justify;
+    margin-left: 6%;	
+}
+
+.header-image {
+	opacity: 1;
+	background-size: cover;
+	height: 40vh;
+	padding-top: 8%;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.header-image h1 {
+	margin-top: 0px;
+	color: white;
+	font-size: 4rem;
+	font-weight: 900;
+	font-family: 'Open Sans';
+}
+
+.nav-col {
+	padding-top: 4% !important;
+	padding-left: 3% !important;
+}
+
+.letter-nav {
+	height: 90vh;
+	overflow-y: scroll;
+	position: relative;
+}
+
+.letter-nav::-webkit-scrollbar {
+    width: 8px;
+}
+
+.letter-nav::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #e2e2e2;
+}
+
+.letter-nav::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: white;
+}
+
+.dict-row {
+	padding-bottom: 2%;
+	padding-left: 2%;
+	border-bottom: 1px solid #e2e2e2;
+	min-height: 25vh !important;
+}
+
+.dict-letter {
+	font-size: 11rem;
+	line-height: 2rem;
+	font-weight: 900;
+	margin-bottom: 5rem;
+	margin-top: 4rem; 
+	color: #8d8d8d;
+	font-family: "Roboto";
+}
+
+.letter-col {
+	padding-left: 4% !important;
+}
+
+.termins-row {
+    margin-bottom: 0px;	
+}
+
+.termin {
+	text-decoration: none;
+	color: #29283f;
+	font-size: 1.1rem;
+}
+
+.termin:hover {
+	font-weight: 900;
+}
+
+.side-letter {
+	text-decoration: none;
+	color: #29283f;
+}
+
+.side-letter:hover {
+	font-weight: 900;
+}
+
+.termin-name {
+	font-size: 2rem;
+	font-weight: 900;
+	margin-top: 0px;
+}
+
+.termin-description {
+	font-size: 1.2rem;
+	text-align: justify;
+}
+
+.back-to-terms { 
+	color: #b43630;
+	font-size: 1.1rem;
+}
+
+.back-to-terms:hover {
+	border-bottom: 1px solid #b43630;
+}
+
+.bio {
+	font-size: 1.1rem;
+}
+
+.bio-header {
+	font-size: 1.4rem;
+}
+
+ul.browser-default {
+  list-style-type: initial;
+}
+
+ul.browser-default li {
+  list-style-type: initial;
+}
+
+.handbook-menu {
+	background-color: #29283f !important;
+	z-index: 10000 !important;
+	color: white !important;
+	padding-top: 3%;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.menu-button {
+	color: white;
+	cursor: pointer;
+	font-size: 2.4rem !important;
+	z-index: 1000;
+	position: fixed;
+	top: 1.9%;
+	left: 2%;
+	transition: all 0.4s;
+}
+
+.author-photo {
+	height: 350px;
+	float: right;
+	margin-left: 4%;
+	margin-bottom: 3%;
+}
+
+.row-wrapper {
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.book-first-row {
+	padding-left: 3%;
+	padding-right: 3%; 
+	padding-top: 4%;
+}
+
+.book-row {
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-top: 1%;
+}
+
+.book-info-col {
+	padding-left: 4%;
+}
+
+.book-image {
+	height: 200px;
+	width: 130px;
+}
+
+.book-title {
+	font-size: 1.3rem;
+	margin-top: 5%; 
+	margin-bottom: 5%;
+}
+
+.book-link {
+	text-decoration: none;
+	color: #29283f;
+}
+
+.book-link:hover {
+	font-weight: 900;
+}
+
+.book-info {
+	font-size: 1.1rem;
+}
+
+.book-big-image {
+	height: 350px;
+	width: 230px;
+}
+
+.book-big-title {
+	font-size: 1.3rem;
+	margin-top: 5%; 
+	margin-bottom: 5%;
+}
+
+.book-big-info {
+	font-size: 1.1rem;
+}
