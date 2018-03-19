@@ -1,0 +1,20 @@
+{% extends 'semsite/base.html'%}
+{% load static %}
+{% load commands %}
+
+{% block content %}
+    {% include 'semsite/blocks/menu.html' %}
+
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col" id="content-column">
+        <p class="page-header" id="article-title">{{ article.title }}</p>
+        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
+        <div id="article-text">{{ article.text|safe }}</div>
+    </div>
+
+    <div class="col s1"></div>
+</div>
+
+{% endblock %}

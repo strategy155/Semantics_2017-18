@@ -1,0 +1,40 @@
+{% extends 'semsite/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col">
+    	<p class="termin-name">{{ author.last_name }}, {{ author.first_name }}</p>
+    	<p class="bio-header">Биография:</p>
+    	
+    	<p class="bio">
+    		{% if author.photo %}
+                <img class="author-photo" src="{{ author.photo.url }}">
+            {% endif %}
+
+    		{{ author.bio|safe }}
+    		<br>
+    	</p>
+
+        {% if author.publications.all %}
+        	<p class="bio-header">Публикации:</p>
+
+        	<ul class="browser-default">
+            		{% for pub in author.publications.all %}
+            		    <li><p class="bio">{{ pub.title }}</p></li>
+            		{% endfor %}
+        	</ul>
+        {% endif %}
+        
+        <br>
+    	<a class="back-to-terms" href="{% url 'authors' %}">Назад к списку персоналий</a>
+
+    </div>
+
+    <div class="col s1"></div>
+</div>
+
+{% endblock %}

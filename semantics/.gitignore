@@ -1,5 +1,5 @@
-# Created by .ignore support plugin (hsz.mobi)
-/db.sqlite3
-/media/
+db.sqlite3
+**/.DS_Store
 /static/
-/src/
+/media/
+/semsite/static/

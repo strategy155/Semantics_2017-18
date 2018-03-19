@@ -1,36 +1,63 @@
 {% extends 'semsite/base.html'%}
 {% load static %}
+{% load commands %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
-{% endblock %}
-
-{% block js %}
-<script src="{% static 'semsite/js/basic_functions.js' %}"></script>
-{% endblock %}
 
 {% block content %}
-<div>
-    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
-        <center><h1>Литература</h1></center>
-    </div>
+<div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+    <center><h1>Литература</h1></center>
 </div>
-
 
 <div class="row main-row">
-    <div class="col s1"></div>
+	<div class="col s1 nav-col">
+		<div class="letter-nav">
+			<center>
+			{% for letter in alphabet %}
+				<a href="#{{ letter }}" class="side-letter"><p>{{ letter }}</p></a>
+			{% endfor %}
+		    </center>
+		</div>
+	</div>
 
-    <div class="col s10"></div>
+    <div class="col s10 page-content-col" style="text-align: left !important;">
+    	{% for letter in alphabet %}
+	    	{% if literature|in_category_books:letter %}
+	    	<div class="row-wrapper">
+		    	<div class="book-first-row row" id="{{ letter }}">
+
+		    		{% for book in literature|in_category_books:letter %}
+		                {% if forloop.counter0|divisibleby:2 %}
+		                {% ifnotequal forloop.counter0 0 %}
+		                    </div>
+		                    <div class="book-row row">
+		                {% endifnotequal %}
+		                {% endif %}
+
+			    		<div class="col s6">
+			    			<div class="row">
+			    				<div class="col s4">
+			    					{% if book.image %}
+			    						<img class="book-image" src="{{ book.image.url }}">
+			    				    {% else %}
+			    				        <img class="book-image" src="{% static 'semsite/img/no-image.png' %}">
+			    				    {% endif %}
+			    				</div>
+
+			    				<div class="col s8 book-info-col">
+			    					<a class="book-link" href="{% url 'book' book.id %}"><p class="book-title">{{ book.title }}</p></a>
+			    					<p class="book-info"><b>Автор:</b> {{ book.authors }}</p>
+			    					<p class="book-info"><b>Год издания:</b> {{ book.year }}</p>	
+			    				</div>
+			    			</div>
+			    		</div>
+			    	{% endfor %}
+		    	</div>
+		    </div> 
+	    	{% endif %}
+    	{% endfor %}
+    </div>
 
     <div class="col s1"></div>
 </div>
 
-<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
-</script>
 {% endblock %}

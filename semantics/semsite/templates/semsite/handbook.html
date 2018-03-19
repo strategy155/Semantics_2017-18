@@ -2,73 +2,27 @@
 {% load static %}
 {% load commands %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
-{% endblock %}
 
 {% block content %}
-<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
+    {% include 'semsite/blocks/menu.html' %}
 
-function changeData(title, text) {
-    $('#article-title').text(title);
-    $('#article-text').html(text);
-}
+<div>
+    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+        <center><h1>Учебник</h1></center>
+    </div>
+</div>
 
-$(document).ready(function(){  
-    function setEqualHeight(columns){
-        var tallestcolumn = 0;
-        columns.each(function(){
-            currentHeight = $(this).height();
-            if(currentHeight > tallestcolumn){
-               tallestcolumn  = currentHeight;
-            }
-        });
-        $('#menu-column').height(tallestcolumn - 100);
-        $('#menu-column2').height(tallestcolumn + 100); 
-        $('#content-column').height(tallestcolumn);
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
 
-    }
-        
-    setEqualHeight($('#menu-column, #content-column'));
-});
-</script>
+    <div class="col s10 page-content-col" id="content-column">
+    	<p class="page-header">Структура учебника</p>
+        <p class="regular-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-<div class="row main-row">
-    <div class="side-menu-icon-col col s1 visible" id="menu-column">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
+        <p class="regular-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 
-    <div class="side-menu-col col s3 non-visible" id="menu-column2">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem;">menu</i>
-        <ul class="side-nav-fixed">
-        <center>
-            {% if handbook_articles %}
-                {% for article in handbook_articles %}
-                    <li class="bold"><a class="side-menu-item" onclick="changeData('{{ article.title }}', '{{ article.text|safe|fix_text }}')">{{ article.title }}</a></li>
-                {% endfor %}
-            {% else %}
-                <li class="bold"><a class="side-menu-item">Название статьи</a></li>
-            {% endif %}
-        </center>
-        </ul>
-    </div>
-
-{% if handbook_articles %}
-	<div class="col s11 page-content-col" id="content-column">
-        <p class="page-header" id="article-title">{{ handbook_articles.0.title }}</p>
-        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
-        <div id="article-text">{{ handbook_articles.0.text|safe }}</div>
-{% else %}
-    <p style="margin: 0px;">No articles.</p>
-{% endif %}
-
-	</div>
+    <div class="col s1"></div>
 </div>
 
 {% endblock %}
