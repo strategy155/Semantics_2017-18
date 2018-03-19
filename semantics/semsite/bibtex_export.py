@@ -4,28 +4,30 @@ from citeproc import CitationStylesStyle, CitationStylesBibliography
 from citeproc import formatter
 from citeproc import Citation, CitationItem
 import io
+import os
+from semantics.settings import BASE_DIR
 
-bib_source = open('xampl.bib','r', encoding='utf-8').read()
-bib = bibtex.BibTeX(io.StringIO(bib_source), encoding='utf-8')
-# load a CSL style (from the current directory)
+def warn(citation_item):
+    print("WARNING: Reference with key '{}' not found in the bibliography."
+          .format(citation_item.key))
 
-bib_style = CitationStylesStyle('harvard1', 'ru-ru', validate=False)
 
-# Create the citeproc-py bibliography, passing it the:
-# * CitationStylesStyle,
-# * BibliographySource (BibTeX in this case), and
-# * a formatter (plain, html, or you can write a custom formatter)
+def make_citation_by_string(publications):
+    bib_str = render_to_string('semsite/export/publications.bib', {'publications': publications})
+    bib = bibtex.BibTeX(io.StringIO(bib_str), encoding='utf-8')
+    bib_style = CitationStylesStyle('gost-r-7-0-5-2008', 'ru-ru', validate=False)
+    bibliography = CitationStylesBibliography(bib_style, bib)
+    citation_items = [CitationItem(key) for key in bib]
+    citation = Citation(citation_items)
+    bibliography.register(citation)
+    return bibliography.cite(citation, warn)
 
-bibliography = CitationStylesBibliography(bib_style, bib)
-
-citation = Citation([CitationItem('sep-montague-semantics')])
-
-bibliography.register(citation)
-# Processing citations in a document needs to be done in two passes as for some
-# CSL styles, a citation can depend on the order of citations in the
-# bibliography and thus on citations following the current one.
-# For this reason, we first need to register all citations with the
-# CitationStylesBibliography.
-
-for elem in bibliography.bibliography():
-    print(elem)
+def make_bibliography_entry_by_string(publications):
+    bib_str = render_to_string('semsite/export/publications.bib', {'publications': publications})
+    bib = bibtex.BibTeX(io.StringIO(bib_str), encoding='utf-8')
+    bib_style = CitationStylesStyle(os.path.join(BASE_DIR,'semsite/gost-r-7-0-5-2008'), 'ru-ru', validate=False)
+    bibliography = CitationStylesBibliography(bib_style, bib)
+    citation_items = [CitationItem(key) for key in bib]
+    citation = Citation(citation_items)
+    bibliography.register(citation)
+    return bibliography.bibliography()
