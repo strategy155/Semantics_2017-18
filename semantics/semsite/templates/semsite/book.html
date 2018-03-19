@@ -20,18 +20,18 @@
                 <p class="termin-name">{{ book.title }}</p>
                 <p class="book-big-info"><b>Автор:</b> {{ book.authors }}</p>
                 <p class="book-big-info"><b>Год издания:</b> {{ book.year }}</p>
-                <p class="book-big-info">{{ book.note }}</p>
+                <p class="book-big-info">{{ book.abstract|safe }}</p>
 
-                {% if not book.abstract %}
+                {% if not book.summary %}
                     <a class="back-to-terms" href="{% url 'literature' %}">Назад к списку литературы</a>
                 {% endif %}
             </div>
         </div>
 
         <div class="row">
-            {% if book.abstract %}
+            {% if book.summary %}
                 <p class="bio-header"><b>Конспект</b></p>
-                <p class="book-big-info">{{ book.abstract|safe }}</p>
+                <p class="book-big-info">{{ book.summary|safe }}</p>
                 <a class="back-to-terms" href="{% url 'literature' %}">Назад к списку литературы</a>
             {% endif %}
         </div>

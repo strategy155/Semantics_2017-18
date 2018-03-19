@@ -93,6 +93,8 @@ class HandbookArticle(models.Model):
     title = models.CharField(max_length=200)
     main_image = models.ImageField(upload_to="uploads/", blank=True)
     literature = models.ManyToManyField(Publication, blank=True)
+    chapters = models.TextField(verbose_name="Оглавление", 
+        help_text="Названия разделов должны писаться через запятую")
     text = RichTextField(config_name='default')
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
