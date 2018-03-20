@@ -1,6 +1,15 @@
 {% extends 'semsite/base.html'%}
 {% load static %}
 
+{% block js %}
+<script>
+	$(document).ready(function(){
+        $(".main-row ul").addClass('browser-default');
+        $("td").css('border', '1px solid black');
+	});	
+</script> 
+{% endblock %}
+
 {% block content %}
 
 <div class="row main-row" style="margin-top: 1%;">

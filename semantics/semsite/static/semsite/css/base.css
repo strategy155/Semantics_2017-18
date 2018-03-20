@@ -1,6 +1,4 @@
 html, body {
-	width: 100vw !important;
-	overflow-x: hidden !important;
 }
 
 
@@ -128,12 +126,14 @@ html, body {
 .nav-col {
 	padding-top: 4% !important;
 	padding-left: 3% !important;
+    position: -webkit-sticky !important; /* Safari */
+    position: sticky !important;
+    top: 5% !important;
 }
 
 .letter-nav {
 	height: 90vh;
 	overflow-y: scroll;
-	position: relative;
 }
 
 .letter-nav::-webkit-scrollbar {
@@ -365,4 +365,8 @@ ul.browser-default li {
 
 .book-big-info {
 	font-size: 1.1rem;
+}
+
+td {
+	border: 1px solid black !important;
 }
