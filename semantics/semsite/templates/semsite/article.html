@@ -4,7 +4,7 @@
 
 {% block js %}
 <script>
-	var chapters = '{{ article.chapters }}'.split(', ');
+	var chapters = '{{ article.chapters }}'.split('$ ');
     var title = '{{ article.title }}'
 
 	$(document).ready(function(){ 
@@ -12,7 +12,7 @@
 			$(":header:contains(" + elem + ")").attr('id', elem);
 		});
 	});	
-</script>
+</script> 
 {% endblock %}
 
 {% block content %}
