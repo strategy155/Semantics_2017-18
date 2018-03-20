@@ -34,3 +34,11 @@ def split_chapters(chapters):
 @register.filter
 def chapter_length(chapter):
     return len(chapter)
+
+
+@register.filter
+def check_author(pub, author):
+    if author in str(pub):
+        return True
+    else:
+        return False

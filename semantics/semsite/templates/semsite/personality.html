@@ -1,5 +1,6 @@
 {% extends 'semsite/base.html' %}
 {% load static %}
+{% load commands %}
 
 {% block content %}
 
@@ -19,12 +20,14 @@
     		<br>
     	</p>
 
-        {% if author.publications.all %}
+        {% if author.publications %}
         	<p class="bio-header">Публикации:</p>
 
-        	<ul class="browser-default">
-            		{% for pub in author.publications.all %}
-            		    <li><p class="bio">{{ pub.title }}</p></li>
+        	<ul style="font-size: 1.1rem;">
+            		{% for pub in publications %}
+                        {% if pub|check_author:author.last_name %}
+            		      <li><p class="bio">{{ pub }}</p></li>
+                        {% endif %}
             		{% endfor %}
         	</ul>
         {% endif %}

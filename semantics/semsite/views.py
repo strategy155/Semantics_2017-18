@@ -31,6 +31,7 @@ class AuthorDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['authors'] = authors
         context['publications'] = make_bibliography_entry_by_string(publications)
+        print(context['publications'])
         return context
 
 

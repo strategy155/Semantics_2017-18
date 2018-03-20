@@ -325,12 +325,12 @@ ul.browser-default li {
 }
 
 .book-info-col {
-	padding-left: 4%;
+	padding-left: 10% !important;
 }
 
 .book-image {
-	height: 200px;
-	width: 130px;
+	height: 250px;
+	width: 170px;
 }
 
 .book-title {
