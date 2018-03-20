@@ -37,7 +37,7 @@
 		                        {% endif %}
 
 								<div class="col s4">
-									<a class="termin" href="{% url 'termin' term.slug %}"><p>{{ term.name }}</p></a>
+									<a class="termin" href="{% url 'termin' term.slug %}"><p>{{ term.names[0] }}</p></a>
 								</div>
 							{% endfor %}
 						</div>
