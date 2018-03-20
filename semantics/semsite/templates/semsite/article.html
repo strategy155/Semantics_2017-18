@@ -2,15 +2,52 @@
 {% load static %}
 {% load commands %}
 
+{% block js %}
+<script>
+	var chapters = '{{ article.chapters }}'.split(', ');
+    var title = '{{ article.title }}'
+
+	$(document).ready(function(){ 
+		chapters.forEach(function(elem){
+			$(":header:contains(" + elem + ")").attr('id', elem);
+		});
+	});	
+</script>
+{% endblock %}
+
 {% block content %}
-    {% include 'semsite/blocks/menu.html' %}
+
+<ul id="slide-out" class="side-nav handbook-menu">
+    {% if handbook_articles %}
+        {% for any_article in handbook_articles %}
+
+            {% if any_article.title|chapter_length > 33 %}
+                <li><a class="long-title" href="{% url 'article' any_article.slug %}">{{ any_article.title }}</a></li>
+            {% else %}
+                <li><a class="short-title" href="{% url 'article' any_article.slug %}">{{ any_article.title }}</a></li>
+            {% endif %}
+
+            {% if any_article.title == article.title %}
+                {% for chapter in article.chapters|split_chapters %}
+                    {% if chapter|chapter_length > 29 %}
+                        <li><a class="long-subchapter" href='#{{ chapter }}'>{{ chapter }}</a></li>
+                    {% else %}
+                        <li><a class="short-subchapter" href='#{{ chapter }}'>{{ chapter }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+</ul>
+
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu">menu</i></a>
 
 <div class="row main-row" style="margin-top: 1%;">
     <div class="col s1"></div>
 
     <div class="col s10 page-content-col" id="content-column">
         <p class="page-header" id="article-title">{{ article.title }}</p>
-        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
         <div id="article-text">{{ article.text|safe }}</div>
     </div>
 

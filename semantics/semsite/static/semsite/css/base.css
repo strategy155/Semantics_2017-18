@@ -165,6 +165,7 @@ html, body {
 	margin-top: 4rem; 
 	color: #8d8d8d;
 	font-family: "Roboto";
+	text-align: justify !important;
 }
 
 .letter-col {
@@ -234,8 +235,59 @@ ul.browser-default li {
 	background-color: #29283f !important;
 	z-index: 10000 !important;
 	color: white !important;
-	padding-top: 3%;
+	padding-top: 4% !important;
+	padding-left: 5% !important;
+	padding-right: 5% !important;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	width: 35% !important;
+}
+
+.handbook-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.handbook-menu::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #e2e2e2;
+}
+
+.handbook-menu::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: white;
+}
+
+.long-title {
+	color: white !important;
+	font-size: 1.1rem !important;
+	line-height: 2rem !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-bottom: 13% !important;
+}
+
+.short-title {
+	color: white !important;
+	font-size: 1.1rem !important;
+	line-height: 2rem !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.long-subchapter {
+	color: white !important;
+	font-size: 1rem !important;
+	line-height: 1.5rem !important;
+	padding-left: 10% !important;
+	padding-right: 0px !important;
+	margin-bottom: 6% !important;
+}
+
+.short-subchapter {
+	color: white !important;
+	font-size: 1rem !important;
+	line-height: 1.5rem !important;
+	padding-left: 10% !important;
+	padding-right: 0px !important;
 }
 
 .menu-button {
@@ -273,12 +325,12 @@ ul.browser-default li {
 }
 
 .book-info-col {
-	padding-left: 4%;
+	padding-left: 10% !important;
 }
 
 .book-image {
-	height: 200px;
-	width: 130px;
+	height: 250px;
+	width: 170px;
 }
 
 .book-title {

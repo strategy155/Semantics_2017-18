@@ -2,6 +2,7 @@ Django==2.0.2
 django-ordered-model==1.4.3
 git+https://github.com/strategy155/django-publications-bootstrap.git#egg=django-publications-bootstrap
 git+https://github.com/marfyl/django-autoslug.git#egg=django-autoslug
+git+https://github.com/strategy155/citeproc-py.git#egg=citeproc-py
 Pillow==5.0.0
 psycopg2==2.7.4
 django-ckeditor==5.4.0
