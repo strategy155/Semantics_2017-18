@@ -48,7 +48,7 @@ class Term(models.Model):
         self.names = [author.strip() for author in self.name.split(',')]
 
     def __str__(self):
-        return self.name
+        return self.names[0]
 
 
 class Idea(models.Model):
@@ -86,6 +86,7 @@ class Author(models.Model):
 
 
 
+
 class HandbookArticle(models.Model):
     def slugify(self):
         return slugify(unidecode.unidecode(self.title))
@@ -99,7 +100,6 @@ class HandbookArticle(models.Model):
     ideas = models.ManyToManyField(Idea, blank=True)
     terms = models.ManyToManyField(Term, blank=True)
     slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
-
 
 
     class Meta:
