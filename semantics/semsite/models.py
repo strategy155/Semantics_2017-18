@@ -1,7 +1,7 @@
 from django.db import models
 import django.utils.timezone
-from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
+from publications_bootstrap.models import Publication
 from django.utils.text import slugify
 import unidecode
 from autoslug import AutoSlugField
