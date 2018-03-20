@@ -7,7 +7,10 @@
 	var chapters = '{{ article.chapters }}'.split('$ ');
     var title = '{{ article.title }}'
 
-	$(document).ready(function(){ 
+	$(document).ready(function(){
+        $(".main-row ul").addClass('browser-default');
+        $("td").css('border', '1px solid black');
+         
 		chapters.forEach(function(elem){
 			$(":header:contains(" + elem + ")").attr('id', elem);
 		});
@@ -43,11 +46,16 @@
 
 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu">menu</i></a>
 
+<div>
+    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+        <center><h1>{{ article.title }}</h1></center>
+    </div>
+</div>
+
 <div class="row main-row" style="margin-top: 1%;">
     <div class="col s1"></div>
 
     <div class="col s10 page-content-col" id="content-column">
-        <p class="page-header" id="article-title">{{ article.title }}</p>
         <div id="article-text">{{ article.text|safe }}</div>
     </div>
 

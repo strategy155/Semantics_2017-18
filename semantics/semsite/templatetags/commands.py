@@ -28,7 +28,7 @@ def in_category_books(category, letter):
 
 @register.filter
 def split_chapters(chapters):
-    return chapters.split(', ')
+    return chapters.split('$ ')
 
 
 @register.filter
