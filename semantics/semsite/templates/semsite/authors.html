@@ -20,7 +20,7 @@
 		</div>
 	</div>
 
-	<div class="col s10 page-content-col" id="content-column">
+	<div class="col s10 page-content-col" id="content-column" style="text-align: left !important;">
 		{% for letter in alphabet %}
 		    {% if authors|in_category_authors:letter %}
 				<div class="dict-row row">
@@ -36,8 +36,8 @@
 		                            <div class="termins-row">
 		                        {% endif %}
 
-								<div class="col s4">
-									<a class="termin" href="{% url 'personality' author.id %}"><p>{{ author.last_name }}, {{ author.first_name}}</p></a>  
+								<div class="col s4 table-col">
+									<a class="termin" href="{% url 'personality' author.slug %}"><p>{{ author.last_name }}, {{ author.first_name}}</p></a>
 								</div>
 							{% endfor %}
 						</div>

@@ -13,9 +13,32 @@ def fix_text(string):
 
 @register.filter
 def in_category_terms(category, letter):
-    return category.filter(name__startswith=letter.lower()).order_by('name')
+    return category.filter(name__istartswith=letter).order_by('name')
 
 
 @register.filter
 def in_category_authors(category, letter):
-    return category.filter(last_name__startswith=letter).order_by('last_name')
+    return category.filter(last_name__istartswith=letter).order_by('last_name')
+
+
+@register.filter
+def in_category_books(category, letter):
+    return category.filter(title__istartswith=letter).order_by('title')
+
+
+@register.filter
+def split_chapters(chapters):
+    return chapters.split('$ ')
+
+
+@register.filter
+def chapter_length(chapter):
+    return len(chapter)
+
+
+@register.filter
+def check_author(pub, author):
+    if author in str(pub):
+        return True
+    else:
+        return False

@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, DetailView
 from .models import HandbookArticle, Author, Term, Publication
+from .bibtex_export import make_bibliography_entry_by_string
 
 
 class IndexView(TemplateView):
@@ -29,7 +30,8 @@ class AuthorDetailView(DetailView):
         publications = Publication.objects.all()
         context = super().get_context_data(**kwargs)
         context['authors'] = authors
-        context['publications'] = publications
+        context['publications'] = make_bibliography_entry_by_string(publications)
+        print(context['publications'])
         return context
 
 
@@ -81,7 +83,22 @@ class LiteratureView(TemplateView):
 
     def get_context_data(self, **kwargs):
         literature = Publication.objects.all()
+        alphabet = list('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ')
         context = super().get_context_data(**kwargs)
         context['literature'] = literature
+        context['alphabet'] = alphabet
+
+        return context
+
+
+class LiteratureDetailView(DetailView):
+    model = Publication
+    template_name = 'semsite/book.html'
+    context_object_name = 'book'
+
+    def get_context_data(self, **kwargs):
+        publications = Publication.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['publications'] = publications
 
         return context

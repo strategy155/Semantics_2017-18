@@ -20,7 +20,7 @@
 		</div>
 	</div>
 
-	<div class="col s10 page-content-col" id="content-column">
+	<div class="col s10 page-content-col" id="content-column" style="text-align: left;">
 		{% for letter in alphabet %}
 		    {% if terms|in_category_terms:letter %}
 				<div class="dict-row row">
@@ -36,8 +36,8 @@
 		                            <div class="termins-row">
 		                        {% endif %}
 
-								<div class="col s4">
-									<a class="termin" href="{% url 'termin' term.id %}"><p>{{ term.name }}</p></a>  
+								<div class="col s4 table-col">
+									<a class="termin" href="{% url 'termin' term.slug %}"><p>{{ term.names.0 }}</p></a>
 								</div>
 							{% endfor %}
 						</div>
