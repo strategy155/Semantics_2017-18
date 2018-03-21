@@ -1,7 +1,7 @@
 from django.db import models
 import django.utils.timezone
-from publications_bootstrap.models import Publication
 from ckeditor.fields import RichTextField
+from publications_bootstrap.models import Publication
 from django.utils.text import slugify
 import unidecode
 from autoslug import AutoSlugField
@@ -32,7 +32,7 @@ class Term(models.Model):
 
     name = models.CharField(max_length=200, verbose_name="Название", 
         help_text="Если у термина несколько названий, разделяйте их запятыми")
-    description = models.TextField(blank=False, verbose_name="Определение")
+    description = RichTextField(blank=False, verbose_name="Определение",config_name='default')
     slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
 
 
@@ -69,7 +69,7 @@ class Author(models.Model):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    bio = models.TextField(blank=True)
+    bio = RichTextField(blank=True,config_name='default')
     photo = models.ImageField(upload_to='uploads/', blank=True)
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
