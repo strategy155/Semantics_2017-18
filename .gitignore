@@ -165,4 +165,5 @@ fabric.properties
 semantics/db.sqlite3
 semantics/static
 semantics/media
-
+.idea/Semantics_2017-18.iml
+semantics/semsite/migrations/.DS_Store
