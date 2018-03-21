@@ -63,6 +63,7 @@ html, body {
 
 .main-navbar {
 	background-color: #b43630;
+	width: 100vw !important;
 }
 
 .brand-logo {
@@ -113,6 +114,7 @@ html, body {
 	height: 40vh;
 	padding-top: 8%;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	width: 100vw !important;
 }
 
 .header-image h1 {
