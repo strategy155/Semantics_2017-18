@@ -1,25 +1,15 @@
 {% load static %}
 
-<nav class="main-navbar">
-    <div class="nav-wrapper">
-      <!--  <a class="brand-logo">
-           <div class="row">
-               <div class="col s6">
-                   <img class="logo-img" src="{% static 'semsite/img/whale.png' %}">
-                </div>
-
-                <div class="col s6 logo-title-col">
-                   <p class="logo-title">РУССКАЯ<br>СЕМАНТИКА</p>
-                </div>
-            </div>
-        </a> -->
-
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-             <li><a class="main-menu-items" href="{% url 'index' %}">Главная</a></li>
-             <li><a class="main-menu-items" href="{% url 'handbook' %}">Учебник</a></li>
-             <li><a class="main-menu-items" href="{% url 'dictionary' %}">Словарь</a></li>
-             <li><a class="main-menu-items" href="{% url 'authors' %}">Личности</a></li>
-             <li><a class="main-menu-items" href="{% url 'literature' %}">Литература</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="navbar-fixed">
+    <nav class="main-navbar">
+        <div class="nav-wrapper">           
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                 <li><a class="main-menu-items" href="{% url 'index' %}">Главная</a></li>
+                 <li><a class="main-menu-items" href="{% url 'handbook' %}">Учебник</a></li>
+                 <li><a class="main-menu-items" href="{% url 'dictionary' %}">Словарь</a></li>
+                 <li><a class="main-menu-items" href="{% url 'authors' %}">Личности</a></li>
+                 <li><a class="main-menu-items" href="{% url 'literature' %}">Литература</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

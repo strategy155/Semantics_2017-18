@@ -2,22 +2,6 @@
 {% load static %}
 {% load commands %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/dictionary.css' %}">
-{% endblock %}
-
-{% block js %}
-<script src="{% static 'semsite/js/basic_functions.js' %}"></script>
-
-<script>
-	function showTerms(){
-		console.log()
-		$("#hidden-terms").show();
-	}
-</script>
-{% endblock %}
-
 {% block content %}
 <div>
 	<div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
@@ -26,108 +10,44 @@
 </div>
 
 <div class="row main-row">
-	<!--<div class="side-menu-icon-col col s1 visible" id="menu-column" style="min-height: 100vh;">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
-	</div>
-
-    <div class="side-menu-col col s3 non-visible" id="menu-column2">
-    	<i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem; min-height: 100vh;">menu</i>
-	    <ul class="side-nav-fixed">
-	    <center>
-		</center>
-		</ul>
-	</div>-->
-
 	<div class="col s1 nav-col">
 		<div class="letter-nav">
-			<center><a href="#let-a" class="side-letter"><p>А</p></a>
-			<center><a href="#let-b" class="side-letter"><p>Б</p></a>
-			<center><a href="#" class="side-letter"><p>В</p></a>
-			<center><a href="#" class="side-letter"><p>Г</p></a>
-			<center><a href="#" class="side-letter"><p>Д</p></a>
-			<center><a href="#" class="side-letter"><p>Е</p></a>
-			<center><a href="#" class="side-letter"><p>Ё</p></a>
-			<center><a href="#" class="side-letter"><p>Ж</p></a>
-			<center><a href="#" class="side-letter"><p>З</p></a>
-			<center><a href="#" class="side-letter"><p>И</p></a>
-			<center><a href="#" class="side-letter"><p>Й</p></a>
-			<center><a href="#" class="side-letter"><p>К</p></a>
-			<center><a href="#" class="side-letter"><p>Л</p></a>
-			<center><a href="#" class="side-letter"><p>М</p></a>
-			<center><a href="#" class="side-letter"><p>Н</p></a>
-			<center><a href="#" class="side-letter"><p>О</p></a>
-			<center><a href="#" class="side-letter"><p>П</p></a>
-			<center><a href="#" class="side-letter"><p>Р</p></a>
-			<center><a href="#" class="side-letter"><p>С</p></a>
-			<center><a href="#" class="side-letter"><p>Т</p></a>
-			<center><a href="#" class="side-letter"><p>У</p></a>
-			<center><a href="#" class="side-letter"><p>Ф</p></a>
-			<center><a href="#" class="side-letter"><p>Х</p></a>
-			<center><a href="#" class="side-letter"><p>Ц</p></a>
-			<center><a href="#" class="side-letter"><p>Ч</p></a>
-			<center><a href="#" class="side-letter"><p>Ш</p></a>
-			<center><a href="#" class="side-letter"><p>Щ</p></a>
-			<center><a href="#" class="side-letter"><p>ъ</p></a>
-			<center><a href="#" class="side-letter"><p>Ы</p></a>
-			<center><a href="#" class="side-letter"><p>Ь</p></a>
-			<center><a href="#" class="side-letter"><p>Э</p></a>
-			<center><a href="#" class="side-letter"><p>Ю</p></a>
-			<center><a href="#" class="side-letter"><p>Я</p></a>	
+			<center>
+			{% for letter in alphabet %}
+				<a href="#{{ letter }}" class="side-letter"><p>{{ letter }}</p></a>
+			{% endfor %}
+		    </center>
 		</div>
 	</div>
 
-	<div class="col s10 page-content-col" id="content-column">
-		<div class="dict-row row">
-			<div class="letter-col col s3">
-				<p class="dict-letter" id="let-a">A</p>
-			</div>
+	<div class="col s10 page-content-col" id="content-column" style="text-align: left;">
+		{% for letter in alphabet %}
+		    {% if terms|in_category_terms:letter %}
+				<div class="dict-row row">
+					<div class="letter-col col s3">
+						<p class="dict-letter" id="{{ letter }}">{{ letter }}</p>
+					</div>
 
-			<div class="col s9">
-				<div class="termins-row">
-					{% for term in terms|in_category:'А' %}
-                        {% if forloop.counter0|divisibleby:3 %}
-                            </div>
-                            <div class="termins-row">
-                        {% endif %}
+					<div class="col s9">
+						<div class="termins-row">
+							{% for term in terms|in_category_terms:letter %}
+		                        {% if forloop.counter0|divisibleby:3 %}
+		                            </div>
+		                            <div class="termins-row">
+		                        {% endif %}
 
-						<div class="col s4">
-							<a class="termin" href="#"><p>{{ term.name }}</p></a>  
+								<div class="col s4 table-col">
+									<a class="termin" href="{% url 'termin' term.slug %}"><p>{{ term.names.0 }}</p></a>
+								</div>
+							{% endfor %}
 						</div>
-					{% endfor %}
+				    </div>
 				</div>
-		    </div>
-		</div>
-
-		<div class="dict-row row">
-			<div class="letter-col col s3">
-				<p class="dict-letter" id="let-b">Б</p>
-			</div>
-
-			<div class="col s9">
-				<div class="termins-row">
-					{% for term in terms|in_category:'Б' %}
-                        {% if forloop.counter0|divisibleby:3 %}
-                            </div>
-                            <div class="termins-row">
-                        {% endif %}
-
-						<div class="col s4">
-							<a class="termin" href="#"><p>{{ term.name }}</p></a>  
-						</div>
-					{% endfor %}
-				</div>
-		    </div>
-		</div>
+			{% endif %}
+		{% endfor %}
 	</div>
 
 	<div class="col s1"></div>
 </div>
 
-<!--<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
-</script>-->
 {% endblock %}

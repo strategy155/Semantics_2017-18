@@ -1,0 +1,52 @@
+{% extends 'semsite/base.html' %}
+{% load static %}
+{% load commands %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $(".main-row ul").addClass('browser-default');
+        $("td").css('border', '1px solid black');
+    }); 
+</script> 
+{% endblock %}
+
+{% block content %}
+
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col">
+    	<p class="termin-name">{{ author.last_name }}, {{ author.first_name }}</p>
+    	<p class="bio-header">Биография:</p>
+    	
+    	<p class="bio">
+    		{% if author.photo %}
+                <img class="author-photo" src="{{ author.photo.url }}">
+            {% endif %}
+
+    		{{ author.bio|safe }}
+    		<br>
+    	</p>
+
+        {% if author.publications %}
+        	<p class="bio-header">Публикации:</p>
+
+        	<ul style="font-size: 1.1rem;">
+            		{% for pub in publications %}
+                        {% if pub|check_author:author.last_name %}
+            		      <li><p class="bio">{{ pub }}</p></li>
+                        {% endif %}
+            		{% endfor %}
+        	</ul>
+        {% endif %}
+        
+        <br>
+    	<a class="back-to-terms" href="{% url 'authors' %}">Назад к списку персоналий</a>
+
+    </div>
+
+    <div class="col s1"></div>
+</div>
+
+{% endblock %}

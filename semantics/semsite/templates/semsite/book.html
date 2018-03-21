@@ -1,0 +1,52 @@
+{% extends 'semsite/base.html' %}
+{% load static %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $(".main-row ul").addClass('browser-default');
+        $("td").css('border', '1px solid black');
+    }); 
+</script> 
+{% endblock %}
+
+{% block content %}
+
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col">
+        <div class="row">
+            <div class="col s3" style="padding-left: 0px;">
+                {% if book.image %}
+                    <img class="book-big-image" src="{{ book.image.url }}">
+                {% else %}
+                    <img class="book-big-image" src="{% static 'semsite/img/no-image.png' %}">
+                {% endif %}
+            </div>
+
+            <div class="col s9">
+                <p class="termin-name">{{ book.title }}</p>
+                <p class="book-big-info"><b>Автор:</b> {{ book.authors }}</p>
+                <p class="book-big-info"><b>Год издания:</b> {{ book.year }}</p>
+                <p class="book-big-info" style="margin-bottom: 3% !important;">{{ book.abstract|safe }}</p>
+
+                {% if not book.summary %}
+                    <a class="back-to-terms" href="{% url 'literature' %}">Назад к списку литературы</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            {% if book.summary %}
+                <p class="book-big-info" style="margin-bottom: 3% !important;">{{ book.summary|safe }}</p>
+                <a class="back-to-terms" href="{% url 'literature' %}">Назад к списку литературы</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="col s1"></div>
+</div>
+
+{% endblock %}

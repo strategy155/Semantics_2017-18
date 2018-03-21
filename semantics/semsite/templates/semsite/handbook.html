@@ -2,73 +2,53 @@
 {% load static %}
 {% load commands %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'semsite/css/base.css' %}">
-<link rel="stylesheet" href="{% static 'semsite/css/index.css' %}">
-{% endblock %}
 
 {% block content %}
-<script>
-function showMenu() {
-    $('#menu-column2').toggleClass('non-visible visible');
-    $('#menu-column').toggleClass('visible non-visible');
-    $('#content-column').toggleClass('s11 s9');
-}
 
-function changeData(title, text) {
-    $('#article-title').text(title);
-    $('#article-text').html(text);
-}
+<ul id="slide-out" class="side-nav handbook-menu" style="padding-left: 3%; padding-right: 3%;">
+    {% if handbook_articles %}
+        {% for article in handbook_articles %}
 
-$(document).ready(function(){  
-    function setEqualHeight(columns){
-        var tallestcolumn = 0;
-        columns.each(function(){
-            currentHeight = $(this).height();
-            if(currentHeight > tallestcolumn){
-               tallestcolumn  = currentHeight;
-            }
-        });
-        $('#menu-column').height(tallestcolumn - 100);
-        $('#menu-column2').height(tallestcolumn + 100); 
-        $('#content-column').height(tallestcolumn);
-
-    }
-        
-    setEqualHeight($('#menu-column, #content-column'));
-});
-</script>
-
-<div class="row main-row">
-    <div class="side-menu-icon-col col s1 visible" id="menu-column">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; position: fixed !important; top: 45vh !important;">menu</i>
-    </div>
-
-    <div class="side-menu-col col s3 non-visible" id="menu-column2">
-        <i class="material-icons medium" id="show-menu" onclick="showMenu()" style="color: white; cursor: pointer; font-size: 2.5rem;">menu</i>
-        <ul class="side-nav-fixed">
-        <center>
-            {% if handbook_articles %}
-                {% for article in handbook_articles %}
-                    <li class="bold"><a class="side-menu-item" onclick="changeData('{{ article.title }}', '{{ article.text|safe|fix_text }}')">{{ article.title }}</a></li>
-                {% endfor %}
+            {% if article.title|chapter_length > 33 %}
+                <li><a class="long-title" href="{% url 'article' article.slug %}">{{ article.title }}</a></li>
             {% else %}
-                <li class="bold"><a class="side-menu-item">Название статьи</a></li>
+                <li><a class="short-title" href="{% url 'article' article.slug %}">{{ article.title }}</a></li>
             {% endif %}
-        </center>
+
+        {% endfor %}
+    {% endif %}
+</ul>
+
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons medium menu-button" id="show-menu">menu</i></a>
+
+<div>
+    <div class="header-image" style="background-image: url('{% static 'semsite/img/header1.jpg' %}');">
+        <center><h1>Учебник</h1></center>
+    </div>
+</div>
+
+<div class="row main-row" style="margin-top: 1%;">
+    <div class="col s1"></div>
+
+    <div class="col s10 page-content-col" id="content-column">
+        <p class="page-header">Структура учебника</p>
+        <p class="regular-text">Перед вами основной раздел ресурса - учебник. Он состоит из глав, представляющих основные разделы семантики. Для удобной  навигации по главам в верхнем левом углу находится кнопка, открывающая меню, где вы можете увидеть список глав. Во время работы с отдельной главой в этом меню будут отображаться ее основные разделы.
+        <br><br>
+        <b style="font-size: 1.1rem;">Содержание:</b>
+        <ul class="browser-default" style="font-size: 1.1rem;">
+            <li>Вводная (история семантики)</li>
+            <li>Референция</li>
+            <li>Имплицитные смыслы</li>
+            <li>Фон и фигура (фасадность)</li>
+            <li>Метонимия</li>
+            <li>Метафора</li>
+            <li>Семантические роли</li>
+            <li>Дистрибутивная семантика</li>
         </ul>
+
     </div>
 
-{% if handbook_articles %}
-	<div class="col s11 page-content-col" id="content-column">
-        <p class="page-header" id="article-title">{{ handbook_articles.0.title }}</p>
-        <img src="{% static 'semsite/img/testpic.jpg' %}" style="height: 250px !important;">
-        <div id="article-text">{{ handbook_articles.0.text|safe }}</div>
-{% else %}
-    <p style="margin: 0px;">No articles.</p>
-{% endif %}
-
-	</div>
+    <div class="col s1"></div>
 </div>
 
 {% endblock %}
