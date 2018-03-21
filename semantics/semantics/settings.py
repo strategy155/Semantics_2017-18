@@ -75,6 +75,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'semantics.wsgi.application'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
