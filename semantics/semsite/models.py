@@ -4,6 +4,7 @@ from ckeditor.fields import RichTextField
 from publications_bootstrap.models import Publication
 from django.utils.text import slugify
 import unidecode
+from django.db import connection
 from autoslug import AutoSlugField
 
 # class Translation(models.Model):
@@ -64,8 +65,12 @@ class Idea(models.Model):
 
 class Author(models.Model):
     def slugify(self):
-        return slugify(unidecode.unidecode(self.first_name + '-' + self.last_name))
-
+        new_name = slugify(unidecode.unidecode(self.first_name + '-' + self.last_name))
+        print(new_name)
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE semsite_author SET slug = %s WHERE first_name = %s AND last_name = %s", [new_name, self.first_name, self.last_name])
+            cursor.execute("SELECT * FROM semsite_author")
+            print(cursor.fetchall())
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -74,10 +79,22 @@ class Author(models.Model):
     publications = models.ManyToManyField(Publication, blank=True)
     ideas = IdeaDescriptor()
     birthdate = models.DateField(default=django.utils.timezone.now,blank=False)
-    slug = AutoSlugField(null=True, default=None, unique=True, populate_from=slugify)
+
+    with connection.cursor() as cursor:
+        cursor.execute("pragma table_info(semsite_author)")
+        column_names = [col[1] for col in cursor.fetchall()]
+        if "slug" in column_names:
+            pass
+        else:
+            cursor.execute("ALTER TABLE semsite_author ADD COLUMN slug TEXT;")
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+    def save(self, *args, **kwargs):
+        super(Author, self).save(*args, **kwargs)
+        self.slugify()
+
 
     class Meta:
         verbose_name = 'Автор'
